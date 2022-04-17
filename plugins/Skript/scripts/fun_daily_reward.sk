@@ -20,7 +20,6 @@ discord command daily:
 			set {langcode::%event-guild%} to "default"
 		
 		
-		
 		#! // DESCRIPTION DAILY COOLDOWN
 		set {_bot_output::%event-guild%::default::desc_daily_cooldown} to "Yout have to wait `%difference between 24 hours and {_waited}%`!"
 		set {_bot_output::%event-guild%::DE_de::desc_daily_cooldown} to "Du musst noch `%difference between 24 hours and {_waited}%` warten bevor du dein Daily abholen kannst!"
@@ -38,13 +37,10 @@ discord command daily:
 			set {_random} to random integer between 50 and 200
 			add {_random} to coins of event-member
 
-
 			#! // DESCRIPTION DAILY COMMAND
 			set {_bot_output::%event-guild%::default::desc_daily} to "Today i give you %{_random}% Coins!"
 			set {_bot_output::%event-guild%::DE_de::desc_daily} to "Heute bekommst du von mir %{_random}% Coins!"
 			set {_bot_output::%event-guild%::EN_en::desc_daily} to "Today i give you %{_random}% Coins!"
-
-
 
 			make embed:
 				set description of embed to "<:icons8coins100:889210789364371497>  **|**  %{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_daily}%"
@@ -71,9 +67,10 @@ discord command fishing [<text>]:
 				set {langcode::%event-guild%} to "default"
 			
 			#! // DESCRIPTION FISHING COOLDOWN
-			set {_bot_output::%event-guild%::default::desc_fishing_cooldown} to "Yout have to wait `%difference between 7 minutes and {_waited}%`!"
+			set {_bot_output::%event-guild%::default::desc_fishing_cooldown} to "You have to wait `%difference between 7 minutes and {_waited}%`!"
 			set {_bot_output::%event-guild%::DE_de::desc_fishing_cooldown} to "Du musst noch `%difference between 7 minutes and {_waited}%` warten bevor du wieder Angeln kannst!"
-			set {_bot_output::%event-guild%::EN_en::desc_fishing_cooldown} to "Yout have to wait `%difference between 7 minutes and {_waited}%`!"
+			set {_bot_output::%event-guild%::EN_en::desc_fishing_cooldown} to "You have to wait `%difference between 7 minutes and {_waited}%`!"
+			
 			
 			if {_waited} is less than 7 minutes:
 				make embed:
@@ -96,29 +93,41 @@ discord command fishing [<text>]:
 				
 				#! // REWARD POOL
 				if {_catch} is "small":
-					set {_reward} to 10
 					set {_catch_name_emote} to "🐟 small"
 					set {catch_image} to "https://emojigraph.org/media/apple/fish_1f41f.png"
-					give 10 to coins of event-member
+					set {_reward} to 10
 
 				if {_catch} is "medium":
-					set {_reward} to 20
 					set {_catch_name_emote} to "🐟 medium"
 					set {catch_image} to "https://emojigraph.org/media/facebook/fish_1f41f.png"
-					give 20 to coins of event-member
+					set {_reward} to 20
 
 				if {_catch} is "big":
-					set {_reward} to 50
 					set {_catch_name_emote} to "🐡 big"
 					set {catch_image} to "https://emojigraph.org/media/facebook/blowfish_1f421.png"
-					give 50 to coins of event-member
+					set {_reward} to 50
 
 				if {_catch} is "giant":
-					set {_reward} to 150
 					set {_catch_name_emote} to "🐠 giant"
 					set {catch_image} to "https://emojigraph.org/media/facebook/tropical-fish_1f420.png"
-					give 150 to coins of event-member
-					
+					set {_reward} to 150
+				
+				give {_reward} to coins of event-member
+				
+				#! language variable stuff
+				if {langcode::%event-guild%} is not set:
+					set {langcode::%event-guild%} to "default"
+
+				#! // DESCRIPTION CATCH
+				set {_bot_output::%event-guild%::default::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I buy the Fish from you for `%{_reward}%` 💰!"
+				set {_bot_output::%event-guild%::DE_de::desc_fish_catch} to "Dein Fisch ist von der klasse `%uppercase {_catch_name_emote}%` %nl%Du bekommst dafür `%{_reward}%` 💰!!"
+				set {_bot_output::%event-guild%::EN_en::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I buy the Fish from you for `%{_reward}%` 💰!"
+				
+				#! // TITEL CATCH
+				set {_bot_output::%event-guild%::default::titel_fish_catch} to "Fishing 🎣"
+				set {_bot_output::%event-guild%::DE_de::titel_fish_catch} to "Fischen 🎣"
+				set {_bot_output::%event-guild%::EN_en::titel_fish_catch} to "Fishing 🎣"
+
 				#! // REWARD DESCRIPTION
 				set {_table} to new Table.Builder()
 				{_table}.withAlignments(2,2,2)
@@ -129,11 +138,9 @@ discord command fishing [<text>]:
 				{_table}.addRow( "GIANT🐠", "150 💰")
 
 				make embed:
-					set title of embed to "Fishing 🎣🎣"
-					set description of embed to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I buy the Fish from you for `%{_reward}%` 💰!"
+					set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::titel_fish_catch}%"
+					set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_fish_catch}%"
 					add inline field named " " with value "```%{_table}.build()%```" to fields of embed
 					set thumbnail of embed to {catch_image}
 					footertext
 				reply with last embed
-			
-			
