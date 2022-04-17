@@ -24,23 +24,26 @@ discord command snippets:
 		set {_bot_output::%event-guild%::default::dp-desc} to "Click to open."
 		set {_bot_output::%event-guild%::DE_de::dp-desc} to "Klicken zum öffnen."
 		set {_bot_output::%event-guild%::EN_en::dp-desc} to "Click to open."
+		set {_bot_output::%event-guild%::PL_pl::dp-desc} to "Kliknij, aby otworzyć."
 
 		# // Dropdown Placeholder
 		set {_bot_output::%event-guild%::default::drop_placeholder} to "Choose your Snippet..."
 		set {_bot_output::%event-guild%::DE_de::drop_placeholder} to "Wähle dein Snippet..."
 		set {_bot_output::%event-guild%::EN_en::drop_placeholder} to "Choose your Snippet..."
+		set {_bot_output::%event-guild%::PL_pl::drop_placeholder} to "Wybierz przykładowy kod..."
 		
 		
 		# // Embed Title
 		set {_bot_output::%event-guild%::default::Embed_title} to "This is the Snippet Selection."
 		set {_bot_output::%event-guild%::DE_de::Embed_title} to "Das ist die Snippet auswahl."
 		set {_bot_output::%event-guild%::EN_en::Embed_title} to "This is the Snippet Selection."
+		set {_bot_output::%event-guild%::PL_pl::Embed_title} to "Wybór przykładowego kodu."
 		
 		# // Embed Description
 		set {_bot_output::%event-guild%::default::Embed_desc} to "```🗒️ | We have some Snippets here for Disky V4.```"
 		set {_bot_output::%event-guild%::DE_de::Embed_desc} to "```🗒️ | Hier haben wir ein paar gesammelte Snippets für Disky V4```"
 		set {_bot_output::%event-guild%::EN_en::Embed_desc} to "```🗒️ | We have some Snippets here for Disky V4.```"
-		
+		set {_bot_output::%event-guild%::PL_pl::Embed_desc} to "```🗒️ | Mamy tutaj kilka przykładów dla Disky V4.```"
 		
 		
 
