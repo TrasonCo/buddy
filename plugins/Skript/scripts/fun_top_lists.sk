@@ -25,12 +25,13 @@ discord command top:
 		set {_bot_output::%event-guild%::default::Top_10_selection_menu_title} to "Top 10 list selection..<:icons8pushpin100:889210789389553774>"
 		set {_bot_output::%event-guild%::DE_de::Top_10_selection_menu_title} to "Top 10 listen auswahl..<:icons8pushpin100:889210789389553774>"
 		set {_bot_output::%event-guild%::EN_en::Top_10_selection_menu_title} to "Top 10 list selection..<:icons8pushpin100:889210789389553774>"
+		set {_bot_output::%event-guild%::PL_pl::Top_10_selection_menu_title} to "Wybierz listę top 10..<:icons8pushpin100:889210789389553774>"
 		
 		# // Top 10 Selection Description
-		set {_bot_output::%event-guild%::default::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Select a button below to select the Top 10 Category"
+		set {_bot_output::%event-guild%::default::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Select a button below to select the category."
 		set {_bot_output::%event-guild%::DE_de::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Wähle über die Button die listen Kategorie aus."
-		set {_bot_output::%event-guild%::EN_en::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Select a button below to select the Top 10 Category"
-		
+		set {_bot_output::%event-guild%::EN_en::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Select a button below to select the category."
+		set {_bot_output::%event-guild%::PL_pl::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Kliknij w przycisk poniżej, aby wybrać kategorię."
 		
 		{_bot_output::%event-guild%::%{langcode::%event-guild%}%::}
 		

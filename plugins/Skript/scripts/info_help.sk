@@ -140,3 +140,4 @@ discord command help:
 				add field named " " with value "**<:emote_fun:959779057044705281>  |  Komendy gier:**%nl%%join {_helpmanu_fun::*} by nl%" to fields of embed
 				footertext
 			reply with last embed
+
