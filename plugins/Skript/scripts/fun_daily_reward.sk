@@ -23,7 +23,8 @@ discord command daily:
 		#! // DESCRIPTION DAILY COOLDOWN
 		set {_bot_output::%event-guild%::default::desc_daily_cooldown} to "Yout have to wait `%difference between 24 hours and {_waited}%`!"
 		set {_bot_output::%event-guild%::DE_de::desc_daily_cooldown} to "Du musst noch `%difference between 24 hours and {_waited}%` warten bevor du dein Daily abholen kannst!"
-		set {_bot_output::%event-guild%::EN_en::desc_daily_cooldown} to "Yout have to wait `%difference between 24 hours and {_waited}%`!"
+		set {_bot_output::%event-guild%::EN_en::desc_daily_cooldown} to "You have to wait `%difference between 24 hours and {_waited}%`!"
+		set {_bot_output::%event-guild%::PL_pl::desc_daily_cooldown} to "Musisz odczekać `%difference between 24 hours and {_waited}%`!"
 		
 		#! // DAILY COMMAND 
 		if {_waited} is less than 24 hours:
@@ -38,9 +39,10 @@ discord command daily:
 			add {_random} to coins of event-member
 
 			#! // DESCRIPTION DAILY COMMAND
-			set {_bot_output::%event-guild%::default::desc_daily} to "Today i give you %{_random}% Coins!"
+			set {_bot_output::%event-guild%::default::desc_daily} to "Today you get %{_random}% Coins from me!"
 			set {_bot_output::%event-guild%::DE_de::desc_daily} to "Heute bekommst du von mir %{_random}% Coins!"
-			set {_bot_output::%event-guild%::EN_en::desc_daily} to "Today i give you %{_random}% Coins!"
+			set {_bot_output::%event-guild%::EN_en::desc_daily} to "Today you get %{_random}% Coins from me!"
+			set {_bot_output::%event-guild%::PL_pl::desc_daily} to "Dostajesz ode mnie dzisiaj %{_random}% Monet!"
 
 			make embed:
 				set description of embed to "<:icons8coins100:889210789364371497>  **|**  %{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_daily}%"
@@ -70,6 +72,7 @@ discord command fishing [<text>]:
 			set {_bot_output::%event-guild%::default::desc_fishing_cooldown} to "You have to wait `%difference between 7 minutes and {_waited}%`!"
 			set {_bot_output::%event-guild%::DE_de::desc_fishing_cooldown} to "Du musst noch `%difference between 7 minutes and {_waited}%` warten bevor du wieder Angeln kannst!"
 			set {_bot_output::%event-guild%::EN_en::desc_fishing_cooldown} to "You have to wait `%difference between 7 minutes and {_waited}%`!"
+			set {_bot_output::%event-guild%::PL_pl::desc_fishing_cooldown} to "Musisz odczekać `%difference between 7 minutes and {_waited}%`!"
 			
 			
 			if {_waited} is less than 7 minutes:
@@ -119,14 +122,16 @@ discord command fishing [<text>]:
 					set {langcode::%event-guild%} to "default"
 
 				#! // DESCRIPTION CATCH
-				set {_bot_output::%event-guild%::default::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I buy the Fish from you for `%{_reward}%` 💰!"
+				set {_bot_output::%event-guild%::default::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I will buy the fish from you for `%{_reward}%` 💰!"
 				set {_bot_output::%event-guild%::DE_de::desc_fish_catch} to "Dein Fisch ist von der klasse `%uppercase {_catch_name_emote}%` %nl%Du bekommst dafür `%{_reward}%` 💰!!"
-				set {_bot_output::%event-guild%::EN_en::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I buy the Fish from you for `%{_reward}%` 💰!"
+				set {_bot_output::%event-guild%::EN_en::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I will buy the fish from you for `%{_reward}%` 💰!"
+				set {_bot_output::%event-guild%::PL_pl::desc_fish_catch} to "Złapałeś `%uppercase {_catch_name_emote}%`! %nl%Odkupię od ciebie tę rybę za `%{_reward}%` 💰!"
 				
 				#! // TITEL CATCH
 				set {_bot_output::%event-guild%::default::titel_fish_catch} to "Fishing 🎣"
 				set {_bot_output::%event-guild%::DE_de::titel_fish_catch} to "Fischen 🎣"
 				set {_bot_output::%event-guild%::EN_en::titel_fish_catch} to "Fishing 🎣"
+				set {_bot_output::%event-guild%::PL_pl::titel_fish_catch} to "Łowienie 🎣"
 
 				#! // REWARD DESCRIPTION
 				set {_table} to new Table.Builder()
