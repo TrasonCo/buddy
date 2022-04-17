@@ -1,0 +1,6 @@
+define new bot named "BOT_NAME":
+	token: BOT_TOKEN
+	intents: default intents
+	policy: all
+	auto reconnect: true
+	compression: none

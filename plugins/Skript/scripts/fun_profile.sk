@@ -1,0 +1,62 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+options:
+	pre: "-"
+	
+
+discord command profile [<member=%event-member%>]:
+	aliases: p, exp
+	prefixes: {@pre}
+	trigger:
+		register text font from "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/fonts/"
+		
+		#! FONT
+		set {montserrat} to new font style with name "Montserrat SemiBold" and with size 20
+		
+		#! BACKGROUND
+		# ToDo: Add more Random Cards and Custom Cards !!
+		add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards/cards_default_random/random_1.png" to {_random::*}
+		add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards/cards_default_random/random_2.png" to {_random::*}
+		add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards/cards_default_random/random_3.png" to {_random::*}
+		set {_randomimage} to random element out of {_random::*}
+		set {_background} to image from file {_randomimage}
+		set {_avatar} to resized (rounded image (image from url avatar of arg-1)) to 200, 200 with algo 4
+		#! LEVEL
+		save LevelExp of arg-1 to {_exp}
+		save Level of arg-1 to {_level}
+		save LevelExpNext of arg-1 to {_next}
+		set {_sx} to ({_exp} / {_next}) * 156
+
+		
+
+		#! IMAGE
+		set {_img} to new image with size 800, 500
+
+		#! DRAW IMAGE
+		draw image {_background} on {_img} at 0, 0
+		draw {_avatar} on {_img} at 39, 112
+
+		#! TEXT
+		set {_level_text} to new text "Lvl. %{_level}%" with color from rgb 30, 30, 30 with font {montserrat}
+		set {_exp_text} to new text "Exp. %{_exp}% / %{_next}%" with color from rgb 30, 30, 30 with font {montserrat}
+
+		#! DRAW OBJECTS
+		draw rounded rect with anti aliases at 59, 320 with size 160, 20 with color from rgb 0, 0, 0 with arc size 10, 10 on {_img}
+		draw rounded rect with anti aliases at 61, 322 with size 156, 16 with color from rgb 194, 194, 194 with arc size 10, 10 on {_img}
+		draw rounded rect with anti aliases at 61, 322 with size {_sx}, 16 with color from rgb 0, 194, 0 with arc size 10, 10 on {_img}
+		
+		#! DRAW TEXT
+		draw {_level_text} with anti aliases at 49, 360 on {_img}
+		draw {_exp_text} with anti aliases at 120, 360 on {_img}
+		close {_img}
+		make embed:
+			set embed color of embed to orange
+			set image of embed to "attachment://image.png"
+
+		# ToDo: Change this code to a better one!!!
+		save image {_img} to file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/image.png"
+		post last embed to event-channel with files "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/image.png"
+		wait a second
+		delete file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/image.png"

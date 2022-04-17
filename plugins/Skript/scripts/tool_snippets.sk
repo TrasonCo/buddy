@@ -1,0 +1,84 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+options:
+	pre: "-"
+	
+
+discord command snippets:
+	aliases: snippet, snip, snipp, s
+	prefixes: {@pre}
+	trigger:
+		set {_files::*} to all files of dir path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/files_snippets/"
+		loop {_files::*}:
+			add "%loop-value%" to {_snippets::*}
+		replace all "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/files_snippets/" and ".txt" with "" in {_snippets::*}
+		
+
+		#! language variable stuff
+		if {langcode::%event-guild%} is not set:
+			set {langcode::%event-guild%} to "default"
+		
+		# // Dropdown Description
+		set {_bot_output::%event-guild%::default::dp-desc} to "Click to open."
+		set {_bot_output::%event-guild%::DE_de::dp-desc} to "Klicken zum öffnen."
+		set {_bot_output::%event-guild%::EN_en::dp-desc} to "Click to open."
+
+		# // Dropdown Placeholder
+		set {_bot_output::%event-guild%::default::drop_placeholder} to "Choose your Snippet..."
+		set {_bot_output::%event-guild%::DE_de::drop_placeholder} to "Wähle dein Snippet..."
+		set {_bot_output::%event-guild%::EN_en::drop_placeholder} to "Choose your Snippet..."
+		
+		
+		# // Embed Title
+		set {_bot_output::%event-guild%::default::Embed_title} to "This is the Snippet Selection."
+		set {_bot_output::%event-guild%::DE_de::Embed_title} to "Das ist die Snippet auswahl."
+		set {_bot_output::%event-guild%::EN_en::Embed_title} to "This is the Snippet Selection."
+		
+		# // Embed Description
+		set {_bot_output::%event-guild%::default::Embed_desc} to "```🗒️ | We have some Snippets here for Disky V4.```"
+		set {_bot_output::%event-guild%::DE_de::Embed_desc} to "```🗒️ | Hier haben wir ein paar gesammelte Snippets für Disky V4```"
+		set {_bot_output::%event-guild%::EN_en::Embed_desc} to "```🗒️ | We have some Snippets here for Disky V4.```"
+		
+		
+		
+
+		set {_dropdown} to new components row
+		#// Dropdown beginn
+
+		set {_dp} to new dropdown with id "dropdown"
+		set max range of {_dp} to 1
+		set min range of {_dp} to 1
+		set placeholder of {_dp} to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::drop_placeholder}%"
+		loop {_snippets::*}:
+			add new option with value "%loop-value%" named "Snippet: %loop-value%" with description "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::dp-desc}%" with reaction "book" to options of {_dp}
+		
+		#// Dropdown end
+		add {_dp} to components of {_dropdown}
+
+		make embed:
+			set title of embed to {_bot_output::%event-guild%::%{langcode::%event-guild%}%::Embed_title}
+			set description of embed to {_bot_output::%event-guild%::%{langcode::%event-guild%}%::Embed_desc}
+			footertext
+		
+		
+		post last embed to event-channel with components row {_dropdown}
+
+		#set components row of {_msg} to {_dropdown}
+		
+
+
+on dropdown click:
+	event-string is "dropdown":
+		set {_content::*} to content of file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/files_snippets/%selected value%.txt"
+		if "%selected value%" is "login":
+			make embed:
+				set title of embed to "Snippet: %selected value%"
+				set description of embed to "```applescript%nl%%join {_content::*} by nl%```"
+				footertext
+			reply with last embed
+		else:
+			post "<:emote_:957001720217604178>**Here is your requested file:** %mention tag of event-member%, i hope it will help you." to event-channel with files "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/files_snippets/%selected value%.txt"
+			defer interaction
+		

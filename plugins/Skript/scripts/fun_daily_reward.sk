@@ -1,0 +1,139 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+import:
+	net.steppschuh.markdowngenerator.table.Table
+	net.steppschuh.markdowngenerator.table.TableRow
+
+options:
+	pre: "-"
+	
+discord command daily:
+	prefixes: {@pre}
+	trigger:
+
+		#! // COOLDOWN CHECK
+		set {_waited} to difference between {system::%discord id of event-member%::dailytimer} and now
+		#! language variable stuff
+		if {langcode::%event-guild%} is not set:
+			set {langcode::%event-guild%} to "default"
+		
+		
+		
+		#! // DESCRIPTION DAILY COOLDOWN
+		set {_bot_output::%event-guild%::default::desc_daily_cooldown} to "Yout have to wait `%difference between 24 hours and {_waited}%`!"
+		set {_bot_output::%event-guild%::DE_de::desc_daily_cooldown} to "Du musst noch `%difference between 24 hours and {_waited}%` warten bevor du dein Daily abholen kannst!"
+		set {_bot_output::%event-guild%::EN_en::desc_daily_cooldown} to "Yout have to wait `%difference between 24 hours and {_waited}%`!"
+		
+		#! // DAILY COMMAND 
+		if {_waited} is less than 24 hours:
+			make embed:
+				set description of embed to "<:swarmtimer:889239274099200010>  **|**  %{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_daily_cooldown}%"
+				footertext
+			reply with last embed
+			stop
+		else:
+			set {system::%discord id of event-member%::dailytimer} to now
+			set {_random} to random integer between 50 and 200
+			add {_random} to coins of event-member
+
+
+			#! // DESCRIPTION DAILY COMMAND
+			set {_bot_output::%event-guild%::default::desc_daily} to "Today i give you %{_random}% Coins!"
+			set {_bot_output::%event-guild%::DE_de::desc_daily} to "Heute bekommst du von mir %{_random}% Coins!"
+			set {_bot_output::%event-guild%::EN_en::desc_daily} to "Today i give you %{_random}% Coins!"
+
+
+
+			make embed:
+				set description of embed to "<:icons8coins100:889210789364371497>  **|**  %{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_daily}%"
+				footertext
+			reply with last embed
+
+
+
+discord command fishing [<text>]:
+	prefixes: {@pre}
+	trigger:
+		if arg-1 is set:
+			if arg-1 is "cheat":
+				make embed:
+					set title of embed to " "
+					set description of embed to "`CHEAT CODE UNLOCKED!!`"
+					footertext
+				reply with last embed
+		else:
+			set {_waited} to difference between {system::%discord id of event-member%::fishingtimer} and now
+
+			#! language variable stuff
+			if {langcode::%event-guild%} is not set:
+				set {langcode::%event-guild%} to "default"
+			
+			#! // DESCRIPTION FISHING COOLDOWN
+			set {_bot_output::%event-guild%::default::desc_fishing_cooldown} to "Yout have to wait `%difference between 7 minutes and {_waited}%`!"
+			set {_bot_output::%event-guild%::DE_de::desc_fishing_cooldown} to "Du musst noch `%difference between 7 minutes and {_waited}%` warten bevor du wieder Angeln kannst!"
+			set {_bot_output::%event-guild%::EN_en::desc_fishing_cooldown} to "Yout have to wait `%difference between 7 minutes and {_waited}%`!"
+			
+			if {_waited} is less than 7 minutes:
+				make embed:
+					set description of embed to "<:swarmtimer:889239274099200010>  **|**  %{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_fishing_cooldown}%"
+					footertext
+				reply with last embed
+				stop
+			else:
+				set {system::%discord id of event-member%::fishingtimer} to now
+				#! // CATCH POOL
+				loop 20 times:
+					add "small" to {_catch_pool::*}
+				loop 7 times:
+					add "medium" to {_catch_pool::*}
+				loop 3 times:
+					add "big" to {_catch_pool::*}
+				loop 1 times:
+					add "giant" to {_catch_pool::*}
+				set {_catch} to random element out of {_catch_pool::*}
+				
+				#! // REWARD POOL
+				if {_catch} is "small":
+					set {_reward} to 10
+					set {_catch_name_emote} to "🐟 small"
+					set {catch_image} to "https://emojigraph.org/media/apple/fish_1f41f.png"
+					give 10 to coins of event-member
+
+				if {_catch} is "medium":
+					set {_reward} to 20
+					set {_catch_name_emote} to "🐟 medium"
+					set {catch_image} to "https://emojigraph.org/media/facebook/fish_1f41f.png"
+					give 20 to coins of event-member
+
+				if {_catch} is "big":
+					set {_reward} to 50
+					set {_catch_name_emote} to "🐡 big"
+					set {catch_image} to "https://emojigraph.org/media/facebook/blowfish_1f421.png"
+					give 50 to coins of event-member
+
+				if {_catch} is "giant":
+					set {_reward} to 150
+					set {_catch_name_emote} to "🐠 giant"
+					set {catch_image} to "https://emojigraph.org/media/facebook/tropical-fish_1f420.png"
+					give 150 to coins of event-member
+					
+				#! // REWARD DESCRIPTION
+				set {_table} to new Table.Builder()
+				{_table}.withAlignments(2,2,2)
+				{_table}.addRow("Fish 🎣", "Coins 💰")
+				{_table}.addRow( "SMALL🐟", "10 💰")
+				{_table}.addRow( "MEDIUM🐟", "20 💰")
+				{_table}.addRow( "BIG🐡", "50 💰")
+				{_table}.addRow( "GIANT🐠", "150 💰")
+
+				make embed:
+					set title of embed to "Fishing 🎣🎣"
+					set description of embed to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I buy the Fish from you for `%{_reward}%` 💰!"
+					add inline field named " " with value "```%{_table}.build()%```" to fields of embed
+					set thumbnail of embed to {catch_image}
+					footertext
+				reply with last embed
+			
+			

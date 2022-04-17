@@ -1,0 +1,27 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+on message received:
+	if event-member is not discord bot:
+		if event-message starts with "-" or "!" or "/" or "+" or ".":
+			stop
+		else:
+			give 1 to guild_messages of event-member
+			if length of event-message <= 12:
+				stop
+			else:
+				save Level of event-member to {_level}
+				save all coins of event-member to {_coins}
+				save all guild_messages of event-member to {_msg}
+				give 1 to coins of event-member
+				set {_msgexp} to random integer between 1 and 6
+				set {_numexp} to {_level}+{_msgexp}
+				give {_numexp} to LevelExp of event-member
+				save Level of event-member to {_level}
+				save LevelExp of event-member to {_exp}
+				save LevelExpNext of event-member to {_next}
+				if {_exp} >= {_next}:
+					give 1 to Level of event-member
+					set LevelExpNext of event-member to {_level}*10*4*2*3
+					set LevelExp of event-member to 0

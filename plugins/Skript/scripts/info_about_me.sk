@@ -1,0 +1,50 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+options:
+	pre: "-"
+	
+
+on message received:
+	if event-member is not discord bot:
+		if event-message starts with "-":
+			stop
+		set {_msg} to event-message
+		set {_bot} to mention tag of user with id "955558642399186975"
+		set {_s::*} to split {_msg} at " "
+		if mentioned users of event-message is user with id "955558642399186975":
+			if {_s::2} is not set:
+				#! language variable stuff
+				#set event-guild to event-message.getGuild().getId()
+				if {langcode::%event-guild%} is not set:
+					set {langcode::%event-guild%} to "default"
+
+				# // Embed Title
+				set {_bot_output::%event-guild%::default::title} to "About Buddy(me):"
+				set {_bot_output::%event-guild%::DE_de::title} to "Über Buddy(mich):"
+				set {_bot_output::%event-guild%::EN_en::title} to "About Buddy(me):"
+
+				# // Embed Description
+				set {_bot_output::%event-guild%::default::desc} to "I am Buddy a Discord Bot🤖 made by Trason, i was made because everyone needs a friend so here i am, your new best friend(Buddy)🤗."
+				set {_bot_output::%event-guild%::DE_de::desc} to "Ich bin Buddy ein Discord Bot🤖 gemacht von Trason, gemacht wurde ich da jeder einen Freund braucht und hier bin ich, euer neuer bester Freund(Buddy)🤗."
+				set {_bot_output::%event-guild%::EN_en::desc} to "I am Buddy a Discord Bot🤖 made by Trason, i was made because everyone needs a friend so here i am, your new best friend(Buddy)🤗."
+				 
+				# // Embed Field Prefix
+				set {_bot_output::%event-guild%::default::prefix} to "**My command sign is** `-`."
+				set {_bot_output::%event-guild%::DE_de::prefix} to "**Mein Kommando Zeichen ist** `-`."
+				set {_bot_output::%event-guild%::EN_en::prefix} to "**My command sign is** `-`."
+				
+				
+
+				make embed:
+					set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::title}%"
+					set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc}%"
+					add field named " " with value "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::prefix}%" to fields of Embed
+					set thumbnail of embed to "https://cdn.discordapp.com/attachments/623552399356723241/955586807179907142/buddy_profile_image.png"
+					footertext
+				reply with last embed
+		
+	else:
+		stop
+

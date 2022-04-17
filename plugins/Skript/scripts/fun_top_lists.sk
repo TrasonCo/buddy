@@ -1,0 +1,101 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+import:
+	net.steppschuh.markdowngenerator.table.Table
+	net.steppschuh.markdowngenerator.table.TableRow
+
+options:
+	pre: "-"
+	
+discord command top:
+	prefixes: {@pre}
+	trigger:
+		set {_top10_buttons} to new components row
+		add new success button with url "top_10-coins" named "Coins" with reaction "cash" from guild with id "889210531217543198" to components of {_top10_buttons}
+		add new success button with url "top_10-msg" named "Messages" with reaction "property" from guild with id "889210531217543198" to components of {_top10_buttons}
+		add new success button with url "top_10-level" named "Level" with reaction "cash" from guild with id "889210531217543198" to components of {_top10_buttons}
+		
+		#! language variable stuff
+		if {langcode::%event-guild%} is not set:
+			set {langcode::%event-guild%} to "default"
+		
+		# // Top 10 Selection
+		set {_bot_output::%event-guild%::default::Top_10_selection_menu_title} to "Top 10 list selection..<:icons8pushpin100:889210789389553774>"
+		set {_bot_output::%event-guild%::DE_de::Top_10_selection_menu_title} to "Top 10 listen auswahl..<:icons8pushpin100:889210789389553774>"
+		set {_bot_output::%event-guild%::EN_en::Top_10_selection_menu_title} to "Top 10 list selection..<:icons8pushpin100:889210789389553774>"
+		
+		# // Top 10 Selection Description
+		set {_bot_output::%event-guild%::default::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Select a button below to select the Top 10 Category"
+		set {_bot_output::%event-guild%::DE_de::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Wähle über die Button die listen Kategorie aus."
+		set {_bot_output::%event-guild%::EN_en::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Select a button below to select the Top 10 Category"
+		
+		
+		{_bot_output::%event-guild%::%{langcode::%event-guild%}%::}
+		
+		
+		make embed:
+			set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::Top_10_selection_menu_title}%"
+			set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::Top_10_Selection_menu_desc}%"
+			footertext
+		reply with last embed with components {_top10_buttons} and store it in {toplist::%discord id of event-member%}
+
+
+on button click:
+	if event-string is "top_10-coins":
+		execute "SELECT * FROM coins ORDER BY coins DESC limit 10" in {sql} and store in {_coinstop::*}
+		set {_table} to new Table.Builder()
+		{_table}.withAlignments(2,2,2)
+		{_table}.addRow("Top", "Coins", "Member")
+		loop 10 times:
+			add 1 to {_n}
+			{_table}.addRow("%{_n}%", "Coins:  %{_coinstop::coins::%loop-value%}%", "%{_coinstop::member_name::%loop-value%}%")
+		make embed:
+			set title of embed to "Top 10 list for coins: <:cash:889210789272096788>"
+			set description of embed to "```%{_table}.build()%```"
+			footertext
+		edit {toplist::%discord id of event-member%} to show last embed and keep components
+		defer interaction
+	
+	if event-string is "top_10-msg":
+		execute "SELECT * FROM messages ORDER BY messages DESC limit 10" in {sql} and store in {_messagestop::*}
+		set {_table} to new Table.Builder()
+		{_table}.withAlignments(2,2,2)
+		{_table}.addRow("Top", "Messages", "Member")
+		loop 10 times:
+			add 1 to {_n}
+			{_table}.addRow("%{_n}%", "Msg: %{_messagestop::messages::%loop-value%}%", "%{_messagestop::member_name::%loop-value%}%")
+		make embed:
+			set title of embed to "Top 10 list for messages: <:property:889210789393760306>"
+			set description of embed to "```%{_table}.build()%```"
+			footertext
+		edit {toplist::%discord id of event-member%} to show last embed and keep components
+		defer interaction
+	
+	if event-string is "top_10-level":
+		execute "SELECT * FROM level ORDER BY level DESC limit 10" in {sql} and store in {_leveltop::*}
+		set {_table} to new Table.Builder()
+		{_table}.withAlignments(2,2,2,2)
+		{_table}.addRow("Top", "Level", "EXP", "Member")
+		loop 10 times:
+			add 1 to {_n}
+			{_table}.addRow("%{_n}%", "Lvl: %{_leveltop::level::%loop-value%}%", "Exp: %{_leveltop::levelexp::%loop-value%}%/%{_leveltop::levelexpnext::%loop-value%}%", "%{_leveltop::member_name::%loop-value%}%")
+		make embed:
+			set title of embed to "Top 10 list for level: <:levelup:889210789603450982>"
+			set description of embed to "```%{_table}.build()%```"
+			footertext
+		edit {toplist::%discord id of event-member%} to show last embed and keep components
+		defer interaction
+
+
+	#set {_table} to new Table.Builder()
+	#{_table}.withAlignments(2,1,3)
+	#{_table}.addRow("Tables", "Are", "Cool")
+#
+	#{_table}.addRow("col 1 is", "left-aligned", "$1600")
+	#{_table}.addRow("col 2 is", "centered", "$12")
+	#{_table}.addRow("col 3 is", "right-aligned", "$1")
+	#{_table}.addRow(null, null, null)
+#
+	#broadcast {_table}.build()
