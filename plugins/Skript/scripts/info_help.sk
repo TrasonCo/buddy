@@ -22,13 +22,13 @@ discord command help:
 		if {langcode::%event-guild%} is "default":
 			#! INFO Commands
 
-			add " <:emote_arrow:957018597979488276> **@Buddy**   |   (  *`Shows the Prefix and reason why Buddy exist`* )" to {_helpmanu_info::*}
+			add " <:emote_arrow:957018597979488276> **@Buddy**   |   (  *`Shows the Prefix and the reason on why Buddy exists`* )" to {_helpmanu_info::*}
 			add " <:emote_arrow:957018597979488276> **-help**   |   (  *`Shows the help menu`* )" to {_helpmanu_info::*}
 			add " " to {_helpmanu_info::*}
 
 			#! TOOL Commands
 
-			add " <:emote_arrow:957018597979488276> **-snippet**   |   (  *`Shows the Snippet selection`* )" to {_helpmanu_tool::*}
+			add " <:emote_arrow:957018597979488276> **-snippet**   |   (  *`Shows the Snippet selection menu`* )" to {_helpmanu_tool::*}
 			add " " to {_helpmanu_tool::*}
 
 			#! FUN Commands
@@ -110,3 +110,33 @@ discord command help:
 				footertext
 			reply with last embed
 		
+		#!────────────────────────────────────────────────────────────────────────────────┐
+		#!───────────────────────────────────[POLISH]────────────────────────────────────┤
+		#!────────────────────────────────────────────────────────────────────────────────┘
+		
+		if {langcode::%event-guild%} is "PL_pl":
+			#! INFO Commands
+
+			add " <:emote_arrow:957018597979488276> **@Buddy**   |   (  *`Pokazuje Prefix i powód dlaczego Buddy powstał`* )" to {_helpmanu_info::*}
+			add " <:emote_arrow:957018597979488276> **-help**   |   (  *`Pokazuje menu pomocy`* )" to {_helpmanu_info::*}
+			add " " to {_helpmanu_info::*}
+
+			#! TOOL Commands
+
+			add " <:emote_arrow:957018597979488276> **-snippet**   |   (  *`Pokazuje menu przykładowych skryptów`* )" to {_helpmanu_tool::*}
+			add " " to {_helpmanu_tool::*}
+
+			#! FUN Commands
+
+			add " <:emote_arrow:957018597979488276> **-exp**   |   (  *`Pokazuje profil wraz z poziomem`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-daily**   |   (  *`Odbierz dzienne Coinsy od Buddy'ego`* )" to {_helpmanu_fun::*}
+			add " " to {_helpmanu_fun::*}
+
+			make embed:
+				set title of embed to "Help Menu"
+				set description of embed to " "
+				add field named " " with value "**<:emote_:957001720217604178>  |  Komendy informacyjne:**%nl%%join {_helpmanu_info::*} by nl%" to fields of embed
+				add field named " " with value "**<:emote_tools:957017548224876617>  |  Komendy użytkowe:**%nl%%join {_helpmanu_tool::*} by nl%" to fields of embed
+				add field named " " with value "**<:emote_fun:959779057044705281>  |  Komendy gier:**%nl%%join {_helpmanu_fun::*} by nl%" to fields of embed
+				footertext
+			reply with last embed
