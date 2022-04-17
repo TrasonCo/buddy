@@ -1,0 +1,44 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+options:
+	pre: "-"
+	
+
+on member join:
+	if discord id of event-guild is "506878804426358784":
+		register text font from "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/fonts/"
+		
+		#! FONT
+		set {_montserrat} to new font style with name "Montserrat SemiBold" and with size 35
+		
+		#! BACKGROUND
+		set {_background} to image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_welcome/welcome_card.png"
+		set {_avatar} to resized (rounded image (image from url avatar of event-member)) to 200, 200 with algo 4
+
+		#! IMAGE 
+		set {_img} to new image with size 800, 500
+
+		#! DRAW IMAGE
+		draw image {_background} on {_img} at 0, 0
+		draw {_avatar} on {_img} at 300, 112
+
+		#! TEXT
+		set {_welcome_text} to new text "Welcome %discord name of event-member%!" with color from rgb 30, 30, 30 with font {montserrat} centered horizontally
+		set {_number_greet_text} to new text "We are now %size of discord members of event-guild% !" with color from rgb 30, 30, 30 with font {montserrat} centered horizontally
+
+
+		#! DRAW TEXT
+		draw {_welcome_text} with anti aliases at 49, 360 on {_img}
+		draw {_number_greet_text} with anti aliases at 120, 420 on {_img}
+
+		make embed:
+			set embed color of embed to orange
+			set image of embed to "attachment://welcome.png"
+		save image {_img} to file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/welcome.png"
+		post last embed in channel with id "958791183411314688" with files "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/welcome.png"
+		wait a second
+		delete file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/welcome.png"
+	else:
+		stop
