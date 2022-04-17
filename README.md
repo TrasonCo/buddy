@@ -8,7 +8,7 @@ so here I am, your new best friend, Buddy 🤗.
 
 - [@TrasonCo](https://github.com/TrasonCo)
 
-## Color Reference
+## Dependencies
 
 | Plugin            | Version        | Link        |
 | ----------------- | -------------- | ----------- |
