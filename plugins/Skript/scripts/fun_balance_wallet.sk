@@ -34,7 +34,7 @@ discord command balance [<member=%event-member%>]:
 		draw image {_card} on {_img} at 0, 0
 		
 		draw {_card_digit_id} with anti aliases at 62, 250 on {_img}
-		draw {_card_name} with anti aliases at 62, 370 on {_img}
+		draw {_card_name} with anti aliases at 0, 370 on {_img}
 		draw {_card_valid_text} with anti aliases at 212, 290 on {_img}
 		draw {_card_coins_text} with anti aliases at 212, 315 on {_img}
 		draw {_card_coins_value} with anti aliases at 280, 305 on {_img}
