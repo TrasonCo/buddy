@@ -17,3 +17,4 @@ so here I am, your new best friend, Buddy 🤗.
 | SkImage | 1.9 | [Download](https://github.com/SkyCraft78/SkImage/releases/latest)|
 | Skript-db | 1.3.3| [Download](https://www.spigotmc.org/resources/skript-db-updated.89363/)|
 | Skript-Reflect | 2.2.3-dev| [Download](https://github.com/TPGamesNL/skript-reflect/releases/latest)|
+| Buddy Bot Discord | Support| [Join](https://discord.gg/yRPsMyc826)|
