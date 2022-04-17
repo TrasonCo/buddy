@@ -20,26 +20,26 @@ discord command snippets:
 		if {langcode::%event-guild%} is not set:
 			set {langcode::%event-guild%} to "default"
 		
-		# // Dropdown Description
+		#! // Dropdown Description
 		set {_bot_output::%event-guild%::default::dp-desc} to "Click to open."
 		set {_bot_output::%event-guild%::DE_de::dp-desc} to "Klicken zum öffnen."
 		set {_bot_output::%event-guild%::EN_en::dp-desc} to "Click to open."
 		set {_bot_output::%event-guild%::PL_pl::dp-desc} to "Kliknij, aby otworzyć."
 
-		# // Dropdown Placeholder
+		#! // Dropdown Placeholder
 		set {_bot_output::%event-guild%::default::drop_placeholder} to "Choose your Snippet..."
 		set {_bot_output::%event-guild%::DE_de::drop_placeholder} to "Wähle dein Snippet..."
 		set {_bot_output::%event-guild%::EN_en::drop_placeholder} to "Choose your Snippet..."
 		set {_bot_output::%event-guild%::PL_pl::drop_placeholder} to "Wybierz przykładowy kod..."
 		
 		
-		# // Embed Title
+		#! // Embed Title
 		set {_bot_output::%event-guild%::default::Embed_title} to "This is the Snippet Selection."
 		set {_bot_output::%event-guild%::DE_de::Embed_title} to "Das ist die Snippet auswahl."
 		set {_bot_output::%event-guild%::EN_en::Embed_title} to "This is the Snippet Selection."
 		set {_bot_output::%event-guild%::PL_pl::Embed_title} to "Wybór przykładowego kodu."
 		
-		# // Embed Description
+		#! // Embed Description
 		set {_bot_output::%event-guild%::default::Embed_desc} to "```🗒️ | We have some Snippets here for Disky V4.```"
 		set {_bot_output::%event-guild%::DE_de::Embed_desc} to "```🗒️ | Hier haben wir ein paar gesammelte Snippets für Disky V4```"
 		set {_bot_output::%event-guild%::EN_en::Embed_desc} to "```🗒️ | We have some Snippets here for Disky V4.```"
@@ -48,7 +48,7 @@ discord command snippets:
 		
 
 		set {_dropdown} to new components row
-		#// Dropdown beginn
+		#! // Dropdown beginn
 
 		set {_dp} to new dropdown with id "dropdown"
 		set max range of {_dp} to 1
@@ -57,18 +57,14 @@ discord command snippets:
 		loop {_snippets::*}:
 			add new option with value "%loop-value%" named "Snippet: %loop-value%" with description "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::dp-desc}%" with reaction "book" to options of {_dp}
 		
-		#// Dropdown end
+		#! // Dropdown end
 		add {_dp} to components of {_dropdown}
 
 		make embed:
 			set title of embed to {_bot_output::%event-guild%::%{langcode::%event-guild%}%::Embed_title}
 			set description of embed to {_bot_output::%event-guild%::%{langcode::%event-guild%}%::Embed_desc}
 			footertext
-		
-		
 		post last embed to event-channel with components row {_dropdown}
-
-		#set components row of {_msg} to {_dropdown}
 		
 
 
@@ -84,4 +80,3 @@ on dropdown click:
 		else:
 			post "<:emote_:957001720217604178>**Here is your requested file:** %mention tag of event-member%, i hope it will help you." to event-channel with files "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/files_snippets/%selected value%.txt"
 			defer interaction
-		

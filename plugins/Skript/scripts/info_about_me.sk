@@ -16,7 +16,6 @@ on message received:
 		if mentioned users of event-message is user with id "955558642399186975":
 			if {_s::2} is not set:
 				#! language variable stuff
-				#set event-guild to event-message.getGuild().getId()
 				if {langcode::%event-guild%} is not set:
 					set {langcode::%event-guild%} to "default"
 
