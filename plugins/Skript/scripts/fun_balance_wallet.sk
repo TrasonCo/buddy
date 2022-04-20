@@ -14,7 +14,7 @@ discord command balance [<member=%event-member%>]:
 
 		#! // FONTS
 		set {font_bank_digit} to new font style with name "OCR-A" and with size 40
-		set {font_bank_user} to new font style with name "OCR-A" and with size 26
+		set {font_bank_user} to new font style with name "OCRB" and with size 26
 		set {font_bank_name} to new font style with name "Eras Demi ITC" and with size 20
 		set {font_bank_values} to new font style with name "Eras Demi ITC" and with size 20
 
@@ -22,7 +22,7 @@ discord command balance [<member=%event-member%>]:
 		set {_s::*} to "%discord id of arg-1%" split at ""
 		save all coins of arg-1 to {_coins}
 		set {_card_base} to image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/default.png"
-		set {_card_chip} to resized image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/utils/chip.png" to 84, 74 with algo 4
+		set {_card_chip} to resized image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/utils/chip.png" to 84, 64 with algo 4
 		set {_logo} to resized (rounded image (image from url "https://cdn.discordapp.com/attachments/623552399356723241/955586807179907142/buddy_profile_image.png")) to 50, 50 with algo 4
 
 		#! TEXT
