@@ -13,31 +13,39 @@ discord command balance [<member=%event-member%>]:
 		register text font from "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/fonts/"
 
 		#! // FONTS
-		set {typwrng} to new font style with name "TypeWrong" and with size 40
-		set {montserrat35} to new font style with name "Montserrat SemiBold" and with size 35
-		set {montserrat} to new font style with name "Montserrat SemiBold" and with size 20
+		set {font_bank_digit} to new font style with name "OCR-A" and with size 40
+		set {font_bank_user} to new font style with name "OCR-A" and with size 26
+		set {font_bank_name} to new font style with name "Eras Demi ITC" and with size 20
+		set {font_bank_values} to new font style with name "Eras Demi ITC" and with size 20
 
 		#! // VARIABLES
 		set {_s::*} to "%discord id of arg-1%" split at ""
 		save all coins of arg-1 to {_coins}
-		set {_card} to image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/creditcard/credit-card.png"
+		set {_card_base} to image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/default.png"
+		set {_card_chip} to resized image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/utils/chip.png" to 84, 74 with algo 4
+		set {_logo} to resized (rounded image (image from url "https://cdn.discordapp.com/attachments/623552399356723241/955586807179907142/buddy_profile_image.png")) to 50, 50 with algo 4
 
 		#! TEXT
-		set {_card_digit_id} to new text "%{_s::1}%%{_s::2}%%{_s::3}%%{_s::4}% %{_s::5}%%{_s::6}%%{_s::7}%%{_s::8}% %{_s::9}%%{_s::10}%%{_s::11}%%{_s::12}% %{_s::13}%%{_s::14}%%{_s::15}%%{_s::16}% %{_s::17}%%{_s::18}%" with color from rgb 200, 200, 200 with font {typwrng}
-		set {_card_name} to new text "%discord name of arg-1%" with color from rgb 255, 255, 255 with font {montserrat35} centered horizontally
-		set {_card_valid_text} to new text "Valid" with color from rgb 255, 255, 255 with font {montserrat}
-		set {_card_coins_text} to new text "Coins" with color from rgb 255, 255, 255 with font {montserrat}
-		set {_card_coins_value} to new text "%{_coins}%" with color from rgb 255, 255, 255 with font {montserrat35}
+		set {_card_digit_id} to new text "%{_s::1}%%{_s::2}%%{_s::3}%%{_s::4}% %{_s::5}%%{_s::6}%%{_s::7}%%{_s::8}% %{_s::9}%%{_s::10}%%{_s::11}%%{_s::12}% %{_s::13}%%{_s::14}%%{_s::15}%%{_s::16}%" with color from rgb 200, 200, 200 with font {font_bank_digit} centered horizontally
+		set {_card_bank_user} to new text "%discord name of arg-1%" with color from rgb 255, 255, 255 with font {font_bank_user}
+		set {_card_valid_text} to new text "Valid" with color from rgb 255, 255, 255 with font {font_bank_values}
+		set {_card_coins_text} to new text "Coins" with color from rgb 255, 255, 255 with font {font_bank_values}
+		set {_card_coins_value} to new text "%{_coins}%" with color from rgb 255, 255, 255 with font {font_bank_digit}
+		set {_card_bank_name} to new text "BUDDYBANK" with color from rgb 255, 255, 255 with font {font_bank_name}
 
 		#! // DRAWING
-		set {_img} to new image with size 649, 409
-		draw image {_card} on {_img} at 0, 0
+		set {_img} to new image with size 528, 334
+		draw image {_card_base} on {_img} at 0, 0
+		draw image {_card_chip} on {_img} at 43, 100
+		draw image {_logo} on {_img} at 464, 270
+
+		draw {_card_digit_id} with anti aliases at 0, 215 on {_img}
+		draw {_card_bank_name} with anti aliases at 43, 51 on {_img}
+		draw {_card_bank_user} with anti aliases at 206, 54 on {_img}
+		draw {_card_valid_text} with anti aliases at 43, 270 on {_img}
+		draw {_card_coins_text} with anti aliases at 43, 295 on {_img}
+		draw {_card_coins_value} with anti aliases at 111, 285 on {_img}
 		
-		draw {_card_digit_id} with anti aliases at 62, 250 on {_img}
-		draw {_card_name} with anti aliases at 0, 370 on {_img}
-		draw {_card_valid_text} with anti aliases at 212, 290 on {_img}
-		draw {_card_coins_text} with anti aliases at 212, 315 on {_img}
-		draw {_card_coins_value} with anti aliases at 280, 305 on {_img}
 
 		#! // EMBED		
 		make embed:
