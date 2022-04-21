@@ -21,7 +21,8 @@ discord command balance [<member=%event-member%>]:
 		#! // VARIABLES
 		set {_s::*} to "%discord id of arg-1%" split at ""
 		save all coins of arg-1 to {_coins}
-		set {_card_base} to image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/default.png"
+		save balance_card of arg-1 to {_balance_card}
+		set {_card_base} to image from file "%{_balance_card}%"
 		set {_card_chip} to resized image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/utils/chip.png" to 84, 64 with algo 4
 		set {_logo} to resized (rounded image (image from url "https://cdn.discordapp.com/attachments/623552399356723241/955586807179907142/buddy_profile_image.png")) to 50, 50 with algo 4
 
