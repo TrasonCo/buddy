@@ -4,7 +4,7 @@
 
 on message received:
 	if event-member is not discord bot:
-		if event-message starts with "-" or "!" or "/" or "+" or ".":
+		if event-message starts with "-" or "!" or "/" or "+" or "." or "*":
 			stop
 		else:
 			give 1 to guild_messages of event-member
