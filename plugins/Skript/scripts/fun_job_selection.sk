@@ -2,3 +2,125 @@
 #!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
 #!──────────────────────────────────────────────────────────────────────────────────────────────────
 
+import:
+	net.steppschuh.markdowngenerator.table.Table
+	net.steppschuh.markdowngenerator.table.TableRow
+
+options:
+	pre: "-"
+	
+
+discord command job [<text>]:
+	prefixes: {@pre}
+	trigger:
+
+		#! language variable stuff
+		if {langcode::%event-guild%} is not set:
+			set {langcode::%event-guild%} to "default"
+		
+		#! // JOB LIST EMBED TITLE
+		set {_bot_output::%event-guild%::default::job_list_embed_title} to "Job list from: %event-member% 👷👷‍♀️"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_title} to "Job liste von: %event-member% 👷👷‍♀️"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_title} to "Job list from: %event-member% 👷👷‍♀️"
+
+		#! // JOB LIST EMBED DESCRIPTION
+		set {_bot_output::%event-guild%::default::job_list_embed_desc} to "Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor`and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_desc} to "Folgende Jobs können ausgewählt werden `Polizei`, `Streamer`, `Koch`, `Entwickler`, `Doktor` und `Fotograf`%nl%Du kannst einen Job auswählen mit `-job join <job_name>`."
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_desc} to "Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor`and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
+		
+		#! // JOB LIST EMBED POLICE
+		set {_bot_output::%event-guild%::default::job_list_embed_police} to "Police"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_police} to "Polizei"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_police} to "Police"
+		
+		#! // JOB LIST EMBED STREAMER
+		set {_bot_output::%event-guild%::default::job_list_embed_streamer} to "Streamer"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_streamer} to "Streamer"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_streamer} to "Streamer"
+		
+		#! // JOB LIST EMBED COOK
+		set {_bot_output::%event-guild%::default::job_list_embed_cook} to "Cook"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_cook} to "Koch"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_cook} to "Cook"
+		
+		#! // JOB LIST EMBED DEVELOPER
+		set {_bot_output::%event-guild%::default::job_list_embed_developer} to "Developer"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_developer} to "Entwickler"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_developer} to "Developer"
+		
+		#! // JOB LIST EMBED DOCTOR
+		set {_bot_output::%event-guild%::default::job_list_embed_doctor} to "Doctor"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_doctor} to "Doktor"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_doctor} to "Doctor"
+		
+		#! // JOB LIST EMBED PHOTOGRAPH
+		set {_bot_output::%event-guild%::default::job_list_embed_photograph} to "Photograph"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_photograph} to "Fotograf"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_photograph} to "Photograph"
+		
+		#! // JOB LIST EMBED HOURS
+		set {_bot_output::%event-guild%::default::job_list_embed_hours} to "Hours"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_hours} to "Stunden"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_hours} to "Hours"
+		
+		#! // JOB LIST
+		#TODO // REPLACE TEXT WITH LANGUAGE VARS
+		if arg-1 is "list":
+
+			#! // POLICE
+			set {_table-police} to new Table.Builder()
+			{_table-police}.withAlignments(2,2)
+			{_table-police}.addRow("%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_hours}%", "Coins/H 💰")
+			{_table-police}.addRow( "0", "10 💰")
+			{_table-police}.addRow( "25", "20 💰")
+			{_table-police}.addRow( "50", "50 💰")
+			{_table-police}.addRow( "100", "150 💰")
+			#! // STREAMER
+			set {_table-streamer} to new Table.Builder()
+			{_table-streamer}.withAlignments(2,2)
+			{_table-streamer}.addRow("%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_hours}%", "Coins/H 💰")
+			{_table-streamer}.addRow( "0", "10 💰")
+			{_table-streamer}.addRow( "25", "20 💰")
+			{_table-streamer}.addRow( "50", "50 💰")
+			{_table-streamer}.addRow( "100", "150 💰")
+			#! // COOK
+			set {_table-cook} to new Table.Builder()
+			{_table-cook}.withAlignments(2,2)
+			{_table-cook}.addRow("%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_hours}%", "Coins/H 💰")
+			{_table-cook}.addRow( "0", "10 💰")
+			{_table-cook}.addRow( "25", "20 💰")
+			{_table-cook}.addRow( "50", "50 💰")
+			{_table-cook}.addRow( "100", "150 💰")
+			#! // DEVELOPER
+			set {_table-developer} to new Table.Builder()
+			{_table-developer}.withAlignments(2,2)
+			{_table-developer}.addRow("%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_hours}%", "Coins/H 💰")
+			{_table-developer}.addRow( "0", "10 💰")
+			{_table-developer}.addRow( "25", "20 💰")
+			{_table-developer}.addRow( "50", "50 💰")
+			{_table-developer}.addRow( "100", "150 💰")
+			#! // DOCTOR
+			set {_table-doctor} to new Table.Builder()
+			{_table-doctor}.withAlignments(2,2)
+			{_table-doctor}.addRow("%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_hours}%", "Coins/H 💰")
+			{_table-doctor}.addRow( "0", "10 💰")
+			{_table-doctor}.addRow( "25", "20 💰")
+			{_table-doctor}.addRow( "50", "50 💰")
+			{_table-doctor}.addRow( "100", "150 💰")
+
+			#! // JOBLIST EMBED
+			make embed:
+				set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_title}%"
+				set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_desc}%"
+				add inline field named "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_police}%" with value "```%{_table-police}.build()%```" to fields of embed
+				add inline field named "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_streamer}%" with value "```%{_table-police}.build()%```" to fields of embed
+				add field named " " with value " " to fields of embed
+				add inline field named "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_cook}%" with value "```%{_table-police}.build()%```" to fields of embed
+				add inline field named "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_developer}%" with value "```%{_table-police}.build()%```" to fields of embed
+				add field named " " with value " " to fields of embed
+				add inline field named "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_doctor}%" with value "```%{_table-police}.build()%```" to fields of embed
+				add inline field named "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_list_embed_photograph}%" with value "```%{_table-police}.build()%```" to fields of embed
+				add field named " " with value " " to fields of embed
+				footertext
+			reply with last embed
+			
