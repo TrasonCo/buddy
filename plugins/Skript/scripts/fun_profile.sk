@@ -16,7 +16,6 @@ discord command profile [<member=%event-member%>]:
 		set {montserrat} to new font style with name "Montserrat SemiBold" and with size 20
 		
 		#! BACKGROUND
-		# ToDo: Add more Random Cards and Custom Cards !!
 		add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards/cards_default_random/random_1.png" to {_random::*}
 		add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards/cards_default_random/random_2.png" to {_random::*}
 		add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards/cards_default_random/random_3.png" to {_random::*}
