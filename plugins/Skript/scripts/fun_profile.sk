@@ -50,13 +50,8 @@ discord command profile [<member=%event-member%>]:
 		#! DRAW TEXT
 		draw {_level_text} with anti aliases at 49, 360 on {_img}
 		draw {_exp_text} with anti aliases at 120, 360 on {_img}
-		close {_img}
+
 		make embed:
 			set embed color of embed to orange
-			set image of embed to "attachment://image.png"
-
-		# ToDo: Change this code to a better one!!!
-		save image {_img} to file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/image.png"
-		post last embed to event-channel with files "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/image.png"
-		wait a second
-		delete file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/image.png"
+			set image of embed to "attachment://image-1.png"
+		post last embed to event-channel with files {_img}
