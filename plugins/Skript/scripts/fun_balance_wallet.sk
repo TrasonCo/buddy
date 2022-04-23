@@ -2,6 +2,9 @@
 #!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
 #!──────────────────────────────────────────────────────────────────────────────────────────────────
 
+import:
+	java.awt.font.GlyphVector
+
 options:
 	pre: "-"
 	
@@ -27,7 +30,8 @@ discord command balance [<member=%event-member%>]:
 		set {_logo} to resized (rounded image (image from url "https://cdn.discordapp.com/attachments/623552399356723241/955586807179907142/buddy_profile_image.png")) to 50, 50 with algo 4
 
 		#! TEXT
-		set {_card_digit_id} to new text "%{_s::1}%%{_s::2}%%{_s::3}%%{_s::4}% %{_s::5}%%{_s::6}%%{_s::7}%%{_s::8}% %{_s::9}%%{_s::10}%%{_s::11}%%{_s::12}% %{_s::13}%%{_s::14}%%{_s::15}%%{_s::16}%" with color from rgb 200, 200, 200 with font {font_bank_digit} centered horizontally
+		set {_card_digit_id2} to new text "%{_s::1}%%{_s::2}%%{_s::3}%%{_s::4}% %{_s::5}%%{_s::6}%%{_s::7}%%{_s::8}% %{_s::9}%%{_s::10}%%{_s::11}%%{_s::12}% %{_s::13}%%{_s::14}%%{_s::15}%%{_s::16}%" with color from rgb 0, 0, 0 with font {font_bank_digit2} centered horizontally
+		set {_card_digit_id} to new text "%{_s::1}%%{_s::2}%%{_s::3}%%{_s::4}% %{_s::5}%%{_s::6}%%{_s::7}%%{_s::8}% %{_s::9}%%{_s::10}%%{_s::11}%%{_s::12}% %{_s::13}%%{_s::14}%%{_s::15}%%{_s::16}%" with color from rgb 210, 210, 210 with font {font_bank_digit} centered horizontally
 		set {_card_bank_user} to new text "%discord name of arg-1%" with color from rgb 255, 255, 255 with font {font_bank_user}
 		set {_card_valid_text} to new text "Valid" with color from rgb 255, 255, 255 with font {font_bank_values}
 		set {_card_coins_text} to new text "Coins" with color from rgb 255, 255, 255 with font {font_bank_values}
@@ -47,12 +51,9 @@ discord command balance [<member=%event-member%>]:
 		draw {_card_coins_text} with anti aliases at 43, 295 on {_img}
 		draw {_card_coins_value} with anti aliases at 111, 285 on {_img}
 		
-
+		
 		#! // EMBED		
 		make embed:
 			set embed color of embed to orange
-			set image of embed to "attachment://balance.png"
-		save image {_img} to file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/balance.png"
-		post last embed to event-channel with files "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/balance.png"
-		wait a second
-		delete file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/balance.png"
+			set image of embed to "attachment://image-1.png"
+		post last embed to event-channel with files {_img}
