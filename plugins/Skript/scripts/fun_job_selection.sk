@@ -24,9 +24,9 @@ discord command job [<text>]:
 		set {_bot_output::%event-guild%::EN_en::job_list_embed_title} to "Job list from: %event-member% 👷👷‍♀️"
 
 		#! // JOB LIST EMBED DESCRIPTION
-		set {_bot_output::%event-guild%::default::job_list_embed_desc} to "Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor`and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
+		set {_bot_output::%event-guild%::default::job_list_embed_desc} to "Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor` and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
 		set {_bot_output::%event-guild%::DE_de::job_list_embed_desc} to "Folgende Jobs können ausgewählt werden `Polizei`, `Streamer`, `Koch`, `Entwickler`, `Doktor` und `Fotograf`%nl%Du kannst einen Job auswählen mit `-job join <job_name>`."
-		set {_bot_output::%event-guild%::EN_en::job_list_embed_desc} to "Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor`and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_desc} to "Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor` and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
 		
 		#! // JOB LIST EMBED POLICE
 		set {_bot_output::%event-guild%::default::job_list_embed_police} to "Police"
