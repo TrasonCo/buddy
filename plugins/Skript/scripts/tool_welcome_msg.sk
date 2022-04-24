@@ -8,10 +8,11 @@ options:
 
 on member join:
 	if discord id of event-guild is "506878804426358784":
+		add role with id "958801578322702336" to roles of event-member
 		register text font from "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/fonts/"
 		
 		#! FONT
-		set {_montserrat} to new font style with name "Montserrat SemiBold" and with size 35
+		set {_montserrat} to new font style with name "Montserrat SemiBold" and with size 40
 		
 		#! BACKGROUND
 		set {_background} to image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_welcome/welcome_card.png"
@@ -30,8 +31,8 @@ on member join:
 
 
 		#! DRAW TEXT
-		draw {_welcome_text} with anti aliases at 49, 360 on {_img}
-		draw {_number_greet_text} with anti aliases at 120, 420 on {_img}
+		draw {_welcome_text} with anti aliases at 0, 360 on {_img}
+		draw {_number_greet_text} with anti aliases at 0, 420 on {_img}
 
 		make embed:
 			set embed color of embed to orange
