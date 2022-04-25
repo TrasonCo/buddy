@@ -1,0 +1,159 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+options:
+	pre: "-"
+	
+
+discord command work:
+	prefixes: {@pre}
+	trigger:
+		#! // TIMER OBSERVER
+		set {_waited} to difference between {system::%discord id of event-member%::workTimer} and now
+
+		#! language variable stuff
+		if {langcode::%event-guild%} is not set:
+			set {langcode::%event-guild%} to "default"
+		
+		#! // WORK EMBED COOLDOWN DESCRIPTION
+		set {_bot_output::%event-guild%::default::desc_work_cooldown} to "You have to wait `%difference between 1 hour and {_waited}%`!"
+		set {_bot_output::%event-guild%::DE_de::desc_work_cooldown} to "Du musst noch `%difference between 1 hour and {_waited}%` warten bevor du wieder Arbeiten kannst!"
+		set {_bot_output::%event-guild%::EN_en::desc_work_cooldown} to "You have to wait `%difference between 1 hour and {_waited}%`!"
+		set {_bot_output::%event-guild%::PL_pl::desc_work_cooldown} to "Musisz odczekać `%difference between 1 hour and {_waited}%`!"
+		
+		#! // WORK EMBED JOBLESS / WORK TITLE
+		set {_bot_output::%event-guild%::default::work_embed_jobless_work_title} to "Work: 👷👷‍♀️"
+		set {_bot_output::%event-guild%::DE_de::work_embed_jobless_work_title} to "Arbeit: 👷👷‍♀️"
+		set {_bot_output::%event-guild%::EN_en::work_embed_jobless_work_title} to "Work: 👷👷‍♀️"
+		
+		#! // WORK EMBED JOBLESS DESCRIPTION
+		set {_bot_output::%event-guild%::default::work_embed_jobless_desc} to "```❌  |  You don't have a job use -job join <job_name> to join a job from -job list```"
+		set {_bot_output::%event-guild%::DE_de::work_embed_jobless_desc} to "```❌  |  Du hast keinen Job benutze -job join <job_name> um einen Job von -job list auszuwählen```"
+		set {_bot_output::%event-guild%::EN_en::work_embed_jobless_desc} to "```❌  |  You don't have a job use -job join <job_name> to join a job from -job list```"
+		
+
+		#! // JOB SELECTED
+		save selected_job of event-member to {_job_selected}
+
+		#! // JOBLESS
+		if {_job_selected} is "Jobless":
+			make embed:
+				set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::work_embed_jobless_work_title}%"
+				set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::work_embed_jobless_desc}%"
+				footertext
+			reply with last embed
+			stop
+		else:
+			#! // TIMER COOLDOWN OBSERVER
+			if {_waited} is less than 1 hour:
+				make embed:
+					set description of embed to "<:swarmtimer:889239274099200010>  **|**  %{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_work_cooldown}%"
+					footertext
+				reply with last embed
+				stop
+			else:
+				#! // JOB SELECTED
+				save selected_job of event-member to {_job_selected}
+
+				#! // JOB HOURS
+				save police_hours of event-member to {_police_hours}
+				save streamer_hours of event-member to {_streamer_hours}
+				save cook_hours of event-member to {_cook_hours}
+				save developer_hours of event-member to {_developer_hours}
+				save doctor_hours of event-member to {_doctor_hours}
+				save photograph_hours of event-member to {_photograph_hours}
+				#! // TIMER SET
+				set {system::%discord id of event-member%::workTimer} to now
+				
+				#! // WORK JOBS POLICE
+				if {_job_selected} is "Police":
+					if {_police_hours} >= 0:
+						set {_reward} to 10
+					if {_police_hours} >= 50:
+						set {_reward} to 25
+					if {_police_hours} >= 100:
+						set {_reward} to 50
+					if {_police_hours} >= 100:
+						set {_reward} to 100
+					give 1 to job_hours_police of event-member
+					
+				
+				#! // WORK JOBS STREAMER
+				if {_job_selected} is "Streamer":
+					if {_streamer_hours} >= 0:
+						set {_reward} to 10
+					if {_streamer_hours} >= 50:
+						set {_reward} to 25
+					if {_streamer_hours} >= 100:
+						set {_reward} to 50
+					if {_streamer_hours} >= 100:
+						set {_reward} to 100
+					give 1 to job_hours_police of event-member
+
+				
+				#! // WORK JOBS COOK
+				if {_job_selected} is "Cook":
+					if {_cook_hours} >= 0:
+						set {_reward} to 10
+					if {_cook_hours} >= 50:
+						set {_reward} to 25
+					if {_cook_hours} >= 100:
+						set {_reward} to 50
+					if {_cook_hours} >= 100:
+						set {_reward} to 100
+					give 1 to job_hours_cook of event-member
+					
+				
+				#! // WORK JOBS DEVELOPER
+				if {_job_selected} is "Developer":
+					if {_developer_hours} >= 0:
+						set {_reward} to 10
+					if {_developer_hours} >= 25:
+						set {_reward} to 25
+					if {_developer_hours} >= 50:
+						set {_reward} to 50
+					if {_developer_hours} >= 100:
+						set {_reward} to 100
+					give 1 to job_hours_developer of event-member
+
+				
+				#! // WORK JOBS DOCTOR
+				if {_job_selected} is "Doctor":
+					if {_doctor_hours} >= 0:
+						set {_reward} to 10
+					if {_doctor_hours} >= 50:
+						set {_reward} to 25
+					if {_doctor_hours} >= 100:
+						set {_reward} to 50
+					if {_doctor_hours} >= 100:
+						set {_reward} to 100
+					give 1 to job_hours_doctor of event-member
+					
+				
+				#! // WORK JOBS PHOTOGRAPH
+				if {_job_selected} is "Photograph":
+					if {_photograph_hours} >= 0:
+						set {_reward} to 10
+					if {_photograph_hours} >= 50:
+						set {_reward} to 25
+					if {_photograph_hours} >= 100:
+						set {_reward} to 50
+					if {_photograph_hours} >= 100:
+						set {_reward} to 100
+					give 1 to job_hours_photograph of event-member
+					
+					
+				#! // WORK EMBED WORK DESCRIPTION
+				set {_bot_output::%event-guild%::default::work_embed_desc} to "```💰  |  For your hard work today i pay you %{_reward}%💰```"
+				set {_bot_output::%event-guild%::DE_de::work_embed_desc} to "```💰  |  Für deine harte Arbeit heute bekommst du %{_reward}%💰```"
+				set {_bot_output::%event-guild%::EN_en::work_embed_desc} to "```💰  |  For your hard work today i pay you %{_reward}%💰```"
+				
+				#! // WORK EMBED
+				give {_reward} to coins of event-member
+				make embed:
+					set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::work_embed_jobless_work_title}%"
+					set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::work_embed_desc}%"
+					footertext
+				reply with last embed
+				stop
