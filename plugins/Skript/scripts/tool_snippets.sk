@@ -73,7 +73,7 @@ on dropdown click:
 		set {_content::*} to content of file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/files_snippets/%selected value%.txt"
 		if "%selected value%" is "login":
 			make embed:
-				set title of embed to "Snippet: %selected value%"
+				set title of embed to "Snippet for %event-member%: %selected value%"
 				set description of embed to "```applescript%nl%%join {_content::*} by nl%```"
 				footertext
 			reply with last embed
