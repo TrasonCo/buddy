@@ -35,6 +35,10 @@ discord command help:
 
 			add " <:emote_arrow:957018597979488276> **-exp**   |   (  *`Shows the Profile with Level progress`* )" to {_helpmanu_fun::*}
 			add " <:emote_arrow:957018597979488276> **-daily**   |   (  *`Get your Daily Coins from Buddy`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-balance**   |   (  *`Shows your Balance Card`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-pay `<member>` `<number>`**   |   (  *`Pay your Coins to someone`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-fishing**   |   (  *`Catch a fish and Buddy will buy it from you`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-job list**   |   (  *`Shows you the Job selection`* )" to {_helpmanu_fun::*}
 			add " " to {_helpmanu_fun::*}
 
 			make embed:
@@ -66,7 +70,11 @@ discord command help:
 			#! FUN Commands
 
 			add " <:emote_arrow:957018597979488276> **-exp**   |   (  *`Zeigt das Profil mit Level an.`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-daily**   |   (  *`Ich gebe dir deine Täglcihen Coins.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-daily**   |   (  *`Ich gebe dir deine Täglichen Coins.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-balance**   |   (  *`Zeigt dir deine Kreditkarte mit deinen Coins.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-pay `<member>` `<zahl>`**   |   (  *`So überweist du Coins.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-fishing**   |   (  *`Du fängst einen Fisch, ich kaufe ihn dir ab.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-job list**   |   (  *`Zeigt dir die Job Auswahl.`* )" to {_helpmanu_fun::*}
 			add " " to {_helpmanu_fun::*}
 
 			make embed:
@@ -99,6 +107,10 @@ discord command help:
 
 			add " <:emote_arrow:957018597979488276> **-exp**   |   (  *`Shows the Profile with Level progress`* )" to {_helpmanu_fun::*}
 			add " <:emote_arrow:957018597979488276> **-daily**   |   (  *`Get your Daily Coins from Buddy`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-balance**   |   (  *`Shows your Balance Card`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-pay `<member>` `<number>`**   |   (  *`Pay your Coins to someone`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-fishing**   |   (  *`Catch a fish and Buddy will buy it from you`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **-job list**   |   (  *`Shows you the Job selection`* )" to {_helpmanu_fun::*}
 			add " " to {_helpmanu_fun::*}
 
 			make embed:
