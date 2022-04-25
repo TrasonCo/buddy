@@ -8,11 +8,31 @@ options:
 discord command pay <member> <integer>:
 	prefixes: {@pre}
 	trigger:
+
+		#! language variable stuff
+		if {langcode::%event-guild%} is not set:
+			set {langcode::%event-guild%} to "default"
+
+		#! // NOT THAT MUCH MONEY
+		set {_bot_output::%event-guild%::default::embed_not_that_much_money} to "**Pay:** %discord name of event-member% --> %discord name of arg-1% <:icons8papermoney100:889210789385363576>%nl%```❌  |  You don't have that much coins💰```"
+		set {_bot_output::%event-guild%::DE_de::embed_not_that_much_money} to "**Geld gesendet:** %discord name of event-member% --> %discord name of arg-1% <:icons8papermoney100:889210789385363576>%nl%```❌  |  Du hast nicht genug coins💰```"
+		set {_bot_output::%event-guild%::EN_en::embed_not_that_much_money} to "**Pay:** %discord name of event-member% --> %discord name of arg-1% <:icons8papermoney100:889210789385363576>%nl%```❌  |  You don't have that much coins💰```"
+		
+		#! // PAYED
+		set {_bot_output::%event-guild%::default::embed_payed} to "**Pay:** %discord name of event-member% --> %discord name of arg-1% <:icons8papermoney100:889210789385363576>%nl%```✅  |  You payed %arg-2%💰 to %arg-1%```"
+		set {_bot_output::%event-guild%::DE_de::embed_payed} to "**Pay:** %discord name of event-member% --> %discord name of arg-1% <:icons8papermoney100:889210789385363576>%nl%```✅  |  Du hast %arg-2%💰 an %arg-1% gesendet.```"
+		set {_bot_output::%event-guild%::EN_en::embed_payed} to "**Pay:** %discord name of event-member% --> %discord name of arg-1% <:icons8papermoney100:889210789385363576>%nl%```✅  |  You payed %arg-2%💰 to %arg-1%```"
+		
+		
+		
+		
+		
+		
 		save all coins of event-member to {_coins}
 		if {_coins} - arg-2 < 0:
 			make embed:
 				set title of embed to " "
-				set description of embed to "**Pay:** %discord name of event-member% --> %discord name of arg-1% <:icons8papermoney100:889210789385363576>%nl%```❌  |  You don't have that much coins💰```"
+				set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::embed_not_that_much_money}%"
 				footertext
 			reply with last embed
 			
@@ -21,7 +41,7 @@ discord command pay <member> <integer>:
 			remove arg-2 from coins of event-member
 			make embed:
 				set title of embed to " "
-				set description of embed to "**Pay:** %discord name of event-member% --> %discord name of arg-1% <:icons8papermoney100:889210789385363576>%nl%```✅  |  You payed %arg-2%💰 to %arg-1%```"
+				set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::embed_payed}%"
 				footertext
 			reply with last embed
 			append "<span class=""pb-1 pt-1""><span class=""bg-blue-500 pl-1 pr-1 pb-1 rounded-b rounded-t"">%arg-2%💰</span> <span><i class=""fa-solid fa-angles-right pl-2 pr-2""></i></span> <span class=""bg-red-500 pl-1 pr-1 pb-1 rounded-b rounded-t"">%discord name of event-member%</span> <span><i class=""fa-solid fa-arrow-right-arrow-left pl-2 pr-2""></i></span> <span class=""bg-green-500 pl-1 pr-1 pb-1 rounded-b rounded-t"">%discord name of arg-1%</span></span>" to file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/data_boddy_website/transactions.txt"
