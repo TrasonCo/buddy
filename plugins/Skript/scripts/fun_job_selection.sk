@@ -10,9 +10,20 @@ options:
 	pre: "-"
 	
 
-discord command job [<text>]:
+discord command job [<text>] [<text>]:
 	prefixes: {@pre}
 	trigger:
+
+		#! // JOB HOURS
+		save police_hours of event-member to {_police_hours}
+		save streamer_hours of event-member to {_streamer_hours}
+		save cook_hours of event-member to {_cook_hours}
+		save developer_hours of event-member to {_developer_hours}
+		save doctor_hours of event-member to {_doctor_hours}
+		save photograph_hours of event-member to {_photograph_hours}
+
+		#! // JOB SELECTED
+		save selected_job of event-member to {_job_selected}
 
 		#! language variable stuff
 		if {langcode::%event-guild%} is not set:
@@ -24,39 +35,39 @@ discord command job [<text>]:
 		set {_bot_output::%event-guild%::EN_en::job_list_embed_title} to "Job list from: %event-member% 👷👷‍♀️"
 
 		#! // JOB LIST EMBED DESCRIPTION
-		set {_bot_output::%event-guild%::default::job_list_embed_desc} to "Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor` and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
-		set {_bot_output::%event-guild%::DE_de::job_list_embed_desc} to "Folgende Jobs können ausgewählt werden `Polizei`, `Streamer`, `Koch`, `Entwickler`, `Doktor` und `Fotograf`%nl%Du kannst einen Job auswählen mit `-job join <job_name>`."
-		set {_bot_output::%event-guild%::EN_en::job_list_embed_desc} to "Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor` and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
+		set {_bot_output::%event-guild%::default::job_list_embed_desc} to "**Job selected: `%{_job_selected}%`**%nl%Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor` and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_desc} to "**Job selected: `%{_job_selected}%`**%nl%Folgende Jobs können ausgewählt werden `Polizei`, `Streamer`, `Koch`, `Entwickler`, `Doktor` und `Fotograf`%nl%Du kannst einen Job auswählen mit `-job join <job_name>`."
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_desc} to "**Job selected: `%{_job_selected}%`**%nl%Following jobs can be chosen `Police`, `Streamer`, `Cook`, `Developer`, `Doctor` and `Photograph`.%nl%You can join a job with `-job join <job_name>.`"
 		
 		#! // JOB LIST EMBED POLICE
-		set {_bot_output::%event-guild%::default::job_list_embed_police} to "Police"
-		set {_bot_output::%event-guild%::DE_de::job_list_embed_police} to "Polizei"
-		set {_bot_output::%event-guild%::EN_en::job_list_embed_police} to "Police"
+		set {_bot_output::%event-guild%::default::job_list_embed_police} to "Police: %{_police_hours}%"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_police} to "Polizei: %{_police_hours}%"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_police} to "Police: %{_police_hours}%"
 		
 		#! // JOB LIST EMBED STREAMER
-		set {_bot_output::%event-guild%::default::job_list_embed_streamer} to "Streamer"
-		set {_bot_output::%event-guild%::DE_de::job_list_embed_streamer} to "Streamer"
-		set {_bot_output::%event-guild%::EN_en::job_list_embed_streamer} to "Streamer"
+		set {_bot_output::%event-guild%::default::job_list_embed_streamer} to "Streamer: %{_streamer_hours}%"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_streamer} to "Streamer: %{_streamer_hours}%"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_streamer} to "Streamer: %{_streamer_hours}%"
 		
 		#! // JOB LIST EMBED COOK
-		set {_bot_output::%event-guild%::default::job_list_embed_cook} to "Cook"
-		set {_bot_output::%event-guild%::DE_de::job_list_embed_cook} to "Koch"
-		set {_bot_output::%event-guild%::EN_en::job_list_embed_cook} to "Cook"
+		set {_bot_output::%event-guild%::default::job_list_embed_cook} to "Cook: %{_cook_hours}%"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_cook} to "Koch: %{_cook_hours}%"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_cook} to "Cook: %{_cook_hours}%"
 		
 		#! // JOB LIST EMBED DEVELOPER
-		set {_bot_output::%event-guild%::default::job_list_embed_developer} to "Developer"
-		set {_bot_output::%event-guild%::DE_de::job_list_embed_developer} to "Entwickler"
-		set {_bot_output::%event-guild%::EN_en::job_list_embed_developer} to "Developer"
+		set {_bot_output::%event-guild%::default::job_list_embed_developer} to "Developer: %{_developer_hours}%"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_developer} to "Entwickler: %{_developer_hours}%"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_developer} to "Developer: %{_developer_hours}%"
 		
 		#! // JOB LIST EMBED DOCTOR
-		set {_bot_output::%event-guild%::default::job_list_embed_doctor} to "Doctor"
-		set {_bot_output::%event-guild%::DE_de::job_list_embed_doctor} to "Doktor"
-		set {_bot_output::%event-guild%::EN_en::job_list_embed_doctor} to "Doctor"
+		set {_bot_output::%event-guild%::default::job_list_embed_doctor} to "Doctor: %{_doctor_hours}%"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_doctor} to "Doktor: %{_doctor_hours}%"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_doctor} to "Doctor: %{_doctor_hours}%"
 		
 		#! // JOB LIST EMBED PHOTOGRAPH
-		set {_bot_output::%event-guild%::default::job_list_embed_photograph} to "Photograph"
-		set {_bot_output::%event-guild%::DE_de::job_list_embed_photograph} to "Fotograf"
-		set {_bot_output::%event-guild%::EN_en::job_list_embed_photograph} to "Photograph"
+		set {_bot_output::%event-guild%::default::job_list_embed_photograph} to "Photograph: %{_photograph_hours}%"
+		set {_bot_output::%event-guild%::DE_de::job_list_embed_photograph} to "Fotograf: %{_photograph_hours}%"
+		set {_bot_output::%event-guild%::EN_en::job_list_embed_photograph} to "Photograph: %{_photograph_hours}%"
 		
 		#! // JOB LIST EMBED HOURS
 		set {_bot_output::%event-guild%::default::job_list_embed_hours} to "Hours"
@@ -66,6 +77,8 @@ discord command job [<text>]:
 		#! // JOB LIST
 		#TODO // REPLACE TEXT WITH LANGUAGE VARS
 		if arg-1 is "list":
+
+			
 
 			#! // POLICE
 			set {_table-police} to new Table.Builder()
@@ -123,4 +136,49 @@ discord command job [<text>]:
 				add field named " " with value " " to fields of embed
 				footertext
 			reply with last embed
+
+		
+		#! // JOB JOIN
+
+		if arg-1 is "join":
+
+			#! language variable stuff
+			if {langcode::%event-guild%} is not set:
+				set {langcode::%event-guild%} to "default"
+			
+			#! // JOB SELECTION SET / NOT SET EMBED TITLE
+			set {_bot_output::%event-guild%::default::job_selection_not_set_embed_title} to "Job Selection:"
+			set {_bot_output::%event-guild%::DE_de::job_selection_not_set_embed_title} to "Job Auswahl:"
+			set {_bot_output::%event-guild%::EN_en::job_selection_not_set_embed_title} to "Job Selection:"
+			
+			#! // JOB SELECTION NOT SET EMBED DESCRIPTION
+			set {_bot_output::%event-guild%::default::job_selection_not_set_embed_desc} to "```❌  |  You have to use the english job names to join a job!```"
+			set {_bot_output::%event-guild%::DE_de::job_selection_not_set_embed_desc} to "```❌  |  Du musst die englischen Job Namen benutzen!```"
+			set {_bot_output::%event-guild%::EN_en::job_selection_not_set_embed_desc} to "```❌  |  You have to use the english job names to join a job!```"
+			
+			#! // JOB SELECTION SET EMBED DESCRIPTION
+			set {_bot_output::%event-guild%::default::job_selection_set_embed_desc} to "```✅  |  You joined the job %proper case arg-2%!```"
+			set {_bot_output::%event-guild%::DE_de::job_selection_set_embed_desc} to "```✅  |  Du hast den Job %proper case arg-2% ausgewählt!```"
+			set {_bot_output::%event-guild%::EN_en::job_selection_set_embed_desc} to "```✅  |  You joined the job %proper case arg-2%!```"
+			
+			
+			{_bot_output::%event-guild%::%{langcode::%event-guild%}%::}
+			
+			
+
+			if arg-2 is not "Police" or "Streamer" or "Cook" or "Developer" or "Doctor" or "Photograph":
+				make embed:
+					set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_selection_not_set_embed_title}%"
+					set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_selection_not_set_embed_desc}%"
+					add field named "Job Names:" with value "`Police`, `Streamer`, `Cook`, `Developer`, `Doctor` and `Photograph`" to fields of embed
+					footertext
+				reply with last embed
+			else:
+				set selected_job of event-member to "%arg-2%"
+				make embed:
+					set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_selection_not_set_embed_title}%"
+					set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::job_selection_set_embed_desc}%"
+					footertext
+				reply with last embed
+				
 			
