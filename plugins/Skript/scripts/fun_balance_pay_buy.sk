@@ -24,10 +24,6 @@ discord command pay <member> <integer>:
 		set {_bot_output::%event-guild%::EN_en::embed_payed} to "**Pay:** %discord name of event-member% --> %discord name of arg-1% <:icons8papermoney100:889210789385363576>%nl%```✅  |  You payed %arg-2%💰 to %arg-1%```"
 		
 		
-		
-		
-		
-		
 		save all coins of event-member to {_coins}
 		if {_coins} - arg-2 < 0:
 			make embed:
