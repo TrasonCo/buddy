@@ -46,6 +46,7 @@ discord command daily:
 
 			make embed:
 				set description of embed to "<:icons8coins100:889210789364371497>  **|**  %{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_daily}%"
+				set footer icon of embed to "https://cdn.discordapp.com/attachments/623552399356723241/887364445217636422/S-logo.png"
 				footertext
 			reply with last embed
 			append "<span class=""pb-1 pt-1""><span class=""bg-blue-500 pl-1 pr-1 pb-1 rounded-b rounded-t"">%{_random}%💰</span> <span><i class=""fa-solid fa-angles-right pl-2 pr-2""></i></span> <span class=""bg-red-500 pl-1 pr-1 pb-1 rounded-b rounded-t"">Buddy</span> <span><i class=""fa-solid fa-arrow-right-arrow-left pl-2 pr-2""></i></span> <span class=""bg-green-500 pl-1 pr-1 pb-1 rounded-b rounded-t"">%discord name of event-member%</span></span>" to file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/data_boddy_website/transactions.txt"
