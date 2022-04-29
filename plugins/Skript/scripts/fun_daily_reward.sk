@@ -52,103 +52,94 @@ discord command daily:
 			append "<tr class=""border-b border-black bg-gray-400""><td class=""pt-2 pb-2"">%now%</td><td>%{_random}% 💰</td><td>Buddy</td><td>%discord name of event-member%</td></tr>" to file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/data_boddy_website/transactions.txt"
 			
 
-discord command fishing [<text>]:
-	prefixes: {@pre}
-	trigger:
-		if arg-1 is set:
-			if arg-1 is "cheat":
-				make embed:
-					set title of embed to " "
-					set description of embed to "`CHEAT CODE UNLOCKED!!`"
-					footertext
-				reply with last embed
-		else:
-			set {_waited} to difference between {system::%discord id of event-member%::fishingtimer} and now
+on slash command:
+	if event-string is "fishing":
+		set {_waited} to difference between {system::%discord id of event-member%::fishingtimer} and now
 
+		#! language variable stuff
+		if {langcode::%event-guild%} is not set:
+			set {langcode::%event-guild%} to "default"
+		
+		#! // DESCRIPTION FISHING COOLDOWN
+		set {_bot_output::%event-guild%::default::desc_fishing_cooldown} to "You have to wait `%difference between 7 minutes and {_waited}%`!"
+		set {_bot_output::%event-guild%::DE_de::desc_fishing_cooldown} to "Du musst noch `%difference between 7 minutes and {_waited}%` warten bevor du wieder Angeln kannst!"
+		set {_bot_output::%event-guild%::EN_en::desc_fishing_cooldown} to "You have to wait `%difference between 7 minutes and {_waited}%`!"
+		set {_bot_output::%event-guild%::PL_pl::desc_fishing_cooldown} to "Musisz odczekać `%difference between 7 minutes and {_waited}%`!"
+		
+		
+		if {_waited} is less than 7 minutes:
+			make embed:
+				set description of embed to "<:swarmtimer:889239274099200010>  **|**  %{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_fishing_cooldown}%"
+				footertext
+			reply with last embed
+			stop
+		else:
+			set {system::%discord id of event-member%::fishingtimer} to now
+			#! // CATCH POOL
+			loop 50 times:
+				add "small" to {_catch_pool::*}
+			loop 25 times:
+				add "medium" to {_catch_pool::*}
+			loop 10 times:
+				add "big" to {_catch_pool::*}
+			loop 3 times:
+				add "giant" to {_catch_pool::*}
+			set {_catch} to random element out of {_catch_pool::*}
+			
+			#! // REWARD POOL
+			if {_catch} is "small":
+				set {_catch_name_emote} to "🐟 small"
+				set {catch_image} to "https://emojigraph.org/media/apple/fish_1f41f.png"
+				set {_reward} to 10
+
+			if {_catch} is "medium":
+				set {_catch_name_emote} to "🐟 medium"
+				set {catch_image} to "https://emojigraph.org/media/facebook/fish_1f41f.png"
+				set {_reward} to 20
+
+			if {_catch} is "big":
+				set {_catch_name_emote} to "🐡 big"
+				set {catch_image} to "https://emojigraph.org/media/facebook/blowfish_1f421.png"
+				set {_reward} to 50
+
+			if {_catch} is "giant":
+				set {_catch_name_emote} to "🐠 giant"
+				set {catch_image} to "https://emojigraph.org/media/facebook/tropical-fish_1f420.png"
+				set {_reward} to 150
+			
+			give {_reward} to coins of event-member
+			
 			#! language variable stuff
 			if {langcode::%event-guild%} is not set:
 				set {langcode::%event-guild%} to "default"
+
+			#! // DESCRIPTION CATCH
+			set {_bot_output::%event-guild%::default::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I will buy the fish from you for `%{_reward}%` 💰!"
+			set {_bot_output::%event-guild%::DE_de::desc_fish_catch} to "Dein Fisch ist von der klasse `%uppercase {_catch_name_emote}%` %nl%Du bekommst dafür `%{_reward}%` 💰!!"
+			set {_bot_output::%event-guild%::EN_en::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I will buy the fish from you for `%{_reward}%` 💰!"
+			set {_bot_output::%event-guild%::PL_pl::desc_fish_catch} to "Złapałeś `%uppercase {_catch_name_emote}%`! %nl%Odkupię od ciebie tę rybę za `%{_reward}%` 💰!"
 			
-			#! // DESCRIPTION FISHING COOLDOWN
-			set {_bot_output::%event-guild%::default::desc_fishing_cooldown} to "You have to wait `%difference between 7 minutes and {_waited}%`!"
-			set {_bot_output::%event-guild%::DE_de::desc_fishing_cooldown} to "Du musst noch `%difference between 7 minutes and {_waited}%` warten bevor du wieder Angeln kannst!"
-			set {_bot_output::%event-guild%::EN_en::desc_fishing_cooldown} to "You have to wait `%difference between 7 minutes and {_waited}%`!"
-			set {_bot_output::%event-guild%::PL_pl::desc_fishing_cooldown} to "Musisz odczekać `%difference between 7 minutes and {_waited}%`!"
-			
-			
-			if {_waited} is less than 7 minutes:
-				make embed:
-					set description of embed to "<:swarmtimer:889239274099200010>  **|**  %{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_fishing_cooldown}%"
-					footertext
-				reply with last embed
-				stop
-			else:
-				set {system::%discord id of event-member%::fishingtimer} to now
-				#! // CATCH POOL
-				loop 20 times:
-					add "small" to {_catch_pool::*}
-				loop 7 times:
-					add "medium" to {_catch_pool::*}
-				loop 3 times:
-					add "big" to {_catch_pool::*}
-				loop 1 times:
-					add "giant" to {_catch_pool::*}
-				set {_catch} to random element out of {_catch_pool::*}
-				
-				#! // REWARD POOL
-				if {_catch} is "small":
-					set {_catch_name_emote} to "🐟 small"
-					set {catch_image} to "https://emojigraph.org/media/apple/fish_1f41f.png"
-					set {_reward} to 10
+			#! // TITEL CATCH
+			set {_bot_output::%event-guild%::default::titel_fish_catch} to "Fishing 🎣"
+			set {_bot_output::%event-guild%::DE_de::titel_fish_catch} to "Fischen 🎣"
+			set {_bot_output::%event-guild%::EN_en::titel_fish_catch} to "Fishing 🎣"
+			set {_bot_output::%event-guild%::PL_pl::titel_fish_catch} to "Łowienie 🎣"
 
-				if {_catch} is "medium":
-					set {_catch_name_emote} to "🐟 medium"
-					set {catch_image} to "https://emojigraph.org/media/facebook/fish_1f41f.png"
-					set {_reward} to 20
+			#! // REWARD DESCRIPTION
+			set {_table} to new Table.Builder()
+			{_table}.withAlignments(2,2,2)
+			{_table}.addRow("Fish 🎣", "Coins 💰")
+			{_table}.addRow( "SMALL🐟", "10 💰")
+			{_table}.addRow( "MEDIUM🐟", "20 💰")
+			{_table}.addRow( "BIG🐡", "50 💰")
+			{_table}.addRow( "GIANT🐠", "150 💰")
 
-				if {_catch} is "big":
-					set {_catch_name_emote} to "🐡 big"
-					set {catch_image} to "https://emojigraph.org/media/facebook/blowfish_1f421.png"
-					set {_reward} to 50
-
-				if {_catch} is "giant":
-					set {_catch_name_emote} to "🐠 giant"
-					set {catch_image} to "https://emojigraph.org/media/facebook/tropical-fish_1f420.png"
-					set {_reward} to 150
-				
-				give {_reward} to coins of event-member
-				
-				#! language variable stuff
-				if {langcode::%event-guild%} is not set:
-					set {langcode::%event-guild%} to "default"
-
-				#! // DESCRIPTION CATCH
-				set {_bot_output::%event-guild%::default::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I will buy the fish from you for `%{_reward}%` 💰!"
-				set {_bot_output::%event-guild%::DE_de::desc_fish_catch} to "Dein Fisch ist von der klasse `%uppercase {_catch_name_emote}%` %nl%Du bekommst dafür `%{_reward}%` 💰!!"
-				set {_bot_output::%event-guild%::EN_en::desc_fish_catch} to "You caught a `%uppercase {_catch_name_emote}% ONE`! %nl%I will buy the fish from you for `%{_reward}%` 💰!"
-				set {_bot_output::%event-guild%::PL_pl::desc_fish_catch} to "Złapałeś `%uppercase {_catch_name_emote}%`! %nl%Odkupię od ciebie tę rybę za `%{_reward}%` 💰!"
-				
-				#! // TITEL CATCH
-				set {_bot_output::%event-guild%::default::titel_fish_catch} to "Fishing 🎣"
-				set {_bot_output::%event-guild%::DE_de::titel_fish_catch} to "Fischen 🎣"
-				set {_bot_output::%event-guild%::EN_en::titel_fish_catch} to "Fishing 🎣"
-				set {_bot_output::%event-guild%::PL_pl::titel_fish_catch} to "Łowienie 🎣"
-
-				#! // REWARD DESCRIPTION
-				set {_table} to new Table.Builder()
-				{_table}.withAlignments(2,2,2)
-				{_table}.addRow("Fish 🎣", "Coins 💰")
-				{_table}.addRow( "SMALL🐟", "10 💰")
-				{_table}.addRow( "MEDIUM🐟", "20 💰")
-				{_table}.addRow( "BIG🐡", "50 💰")
-				{_table}.addRow( "GIANT🐠", "150 💰")
-
-				make embed:
-					set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::titel_fish_catch}%"
-					set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_fish_catch}%"
-					add inline field named " " with value "```%{_table}.build()%```" to fields of embed
-					set thumbnail of embed to {catch_image}
-					footertext
-				reply with last embed
-				append "<tr class=""border-b border-black bg-gray-400""><td class=""pt-2 pb-2"">%now%</td><td>%{_reward}% 💰</td><td>Buddy-Bot</td><td>%discord name of event-member%</td></tr>" to file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/data_boddy_website/transactions.txt"
-			
+			make embed:
+				set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::titel_fish_catch}%"
+				set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::desc_fish_catch}%"
+				add inline field named " " with value "```%{_table}.build()%```" to fields of embed
+				set thumbnail of embed to {catch_image}
+				footertext
+			reply with last embed
+			append "<tr class=""border-b border-black bg-gray-400""><td class=""pt-2 pb-2"">%now%</td><td>%{_reward}% 💰</td><td>Buddy-Bot</td><td>%discord name of event-member%</td></tr>" to file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/data_boddy_website/transactions.txt"
+		
