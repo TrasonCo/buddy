@@ -30,9 +30,9 @@ on message received:
 				set {_bot_output::%event-guild%::EN_en::desc} to "I am Buddy, a Discord Bot 🤖 made by Trason. I was made because everyone needs a friend so here I am, your new best friend, Buddy 🤗."
 				 
 				#! // Embed Field Prefix
-				set {_bot_output::%event-guild%::default::prefix} to "**My command sign is** `-`."
-				set {_bot_output::%event-guild%::DE_de::prefix} to "**Mein Kommando Zeichen ist** `-`."
-				set {_bot_output::%event-guild%::EN_en::prefix} to "**My command sign is** `-`."
+				set {_bot_output::%event-guild%::default::prefix} to "**My command sign is** `/`."
+				set {_bot_output::%event-guild%::DE_de::prefix} to "**Mein Kommando Zeichen ist** `/`."
+				set {_bot_output::%event-guild%::EN_en::prefix} to "**My command sign is** `/`."
 				
 				
 
