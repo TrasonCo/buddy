@@ -2,19 +2,12 @@
 #!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
 #!──────────────────────────────────────────────────────────────────────────────────────────────────
 
-options:
-	pre: "-"
-	
-
-discord command help:
-	prefixes: {@pre}
-	trigger:
+on slash command:
+	if event-string is "help":
 		#! language variable stuff
 		if {langcode::%event-guild%} is not set:
 			set {langcode::%event-guild%} to "default"
 		
-
- 
 		#!────────────────────────────────────────────────────────────────────────────────┐
 		#!───────────────────────────────────[DEFAULT]────────────────────────────────────┤
 		#!────────────────────────────────────────────────────────────────────────────────┘
