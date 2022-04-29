@@ -2,9 +2,7 @@
 #!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
 #!──────────────────────────────────────────────────────────────────────────────────────────────────
 
-on load:
-	set {_disky_helper_docs} to new slash command named "disky" with description "`DiSkyV4 Download and Docs!`"
-	update {_disky_helper_docs} locally in guild with id "818182471140114432" # 'locally' or 'globally', take a guild or a bot.
+
 
 on slash command: 
 	if event-string is "disky":
@@ -13,8 +11,9 @@ on slash command:
 		add new link button with url "https://forum.itsthesky.info/resources/" named "Forum" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
 		add new link button with url "https://github.com/DiSkyOrg/DiSky/releases/latest" named "Download" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
 		
+		set {_disky_emote} to mention tag of reaction "disky" from guild with id "818182471140114432"
 		make embed:
-			set title of embed to "<:disky:825811394963177533>  |  DiSKy 4.0-beta2"
+			set title of embed to "%{_disky_emote}%  |  DiSKy 4.0-beta2"
 			set description of embed to " "
 			footertext
 		reply with last embed with components {_disky}
