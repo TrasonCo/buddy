@@ -1,0 +1,24 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+on load:
+	#! //disky_heler_docs.sk
+	set {_buddy::disky_helper_docs} to new slash command named "disky" with description "DiSkyV4 Download and Docs!"
+
+	#! //tool_language.sk
+	set {_buddy::tool_language} to new slash command named "language" with description "DE_de, PL_pl and EN_en, default is EN_en"
+	add new required auto-complete string option named "code" with description "DE_de, PL_pl and EN_en, default is EN_en" to options of {_buddy::tool_language}
+
+	#! //info_help.sk
+	set {_buddy::info_help} to new slash command named "help" with description "Help menu of Buddy"
+	
+	#! //fun_daily_reward_fishing.sk
+	set {_buddy::fun_daily_reward_fishing} to new slash command named "fishing" with description "Catch a fish and sell it to Buddy"
+	
+	
+	
+	
+
+	update {_buddy::*} globally in bot "Buddy" # 'locally' or 'globally', take a guild or a bot.
+
