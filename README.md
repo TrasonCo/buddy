@@ -12,7 +12,7 @@ so here I am, your new best friend, Buddy 🤗.
 
 | Plugin            | Version        | Link        |
 | ----------------- | -------------- | ----------- |
-| DiSky | 4.0-alpha16 | [Download](https://discord.gg/HTVvPwKXy9)|
+| DiSky | 4.0 | [Download](https://github.com/DiSkyOrg/DiSky/releases/latest)|
 | Skript | 2.6+ | [Download](https://github.com/SkriptLang/Skript/releases/latest)|
 | SkImage | 1.9 | [Download](https://github.com/SkyCraft78/SkImage/releases/latest)|
 | Skript-db | 1.3.3| [Download](https://www.spigotmc.org/resources/skript-db-updated.89363/)|
