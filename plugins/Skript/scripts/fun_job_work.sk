@@ -158,5 +158,4 @@ discord command work:
 					footertext
 				reply with last embed
 				append "<tr class=""border-b border-black bg-gray-400""><td class=""pt-2 pb-2"">%now%</td><td>%{_reward}% 💰</td><td>Buddy-Bot</td><td>%discord name of event-member%</td></tr>" to file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/data_boddy_website/transactions.txt"
-			
 				stop

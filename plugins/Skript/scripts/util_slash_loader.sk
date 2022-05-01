@@ -8,8 +8,12 @@ on load:
 
 	#! //tool_language.sk
 	set {_buddy::tool_language} to new slash command named "language" with description "DE_de, PL_pl and EN_en, default is EN_en"
-	add new required auto-complete string option named "code" with description "DE_de, PL_pl and EN_en, default is EN_en" to options of {_buddy::tool_language}
-
+	set {_opt} to new required string option named "code" with description "DE_de, PL_pl and EN_en, default is EN_en"
+	add new choice named "German Output" with value "DE_de" to choices of {_opt}
+	add new choice named "English Output" with value "EN_en" to choices of {_opt}
+	add new choice named "Polish Output" with value "PL_pl" to choices of {_opt}
+	add {_opt} to options of {_buddy::tool_language}
+	
 	#! //info_help.sk
 	set {_buddy::info_help} to new slash command named "help" with description "Help menu of Buddy"
 	
