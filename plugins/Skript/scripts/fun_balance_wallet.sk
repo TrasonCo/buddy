@@ -45,9 +45,9 @@ on slash command:
 		draw {_card_coins_text} with anti aliases at 43, 295 on {_img}
 		draw {_card_coins_value} with anti aliases at 111, 285 on {_img}
 		
-		
+		wait 4 ticks
 		#! // EMBED		
 		make embed:
 			set embed color of embed to orange
 			set image of embed to "attachment://image-1.png"
-		post last embed to event-channel with files {_img}
+		reply with last embed with files {_img}

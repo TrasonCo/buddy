@@ -9,10 +9,8 @@ options:
 on slash command:
 	if event-string is "profile":
 		register text font from "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/fonts/"
-		
 		#! FONT
 		set {montserrat} to new font style with name "Montserrat SemiBold" and with size 20
-		
 		#! BACKGROUND
 		add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards/cards_default_random/random_1.png" to {_random::*}
 		add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards/cards_default_random/random_2.png" to {_random::*}
@@ -47,8 +45,9 @@ on slash command:
 		#! DRAW TEXT
 		draw {_level_text} with anti aliases at 49, 360 on {_img}
 		draw {_exp_text} with anti aliases at 120, 360 on {_img}
-
+		wait 4 ticks
 		make embed:
 			set embed color of embed to orange
 			set image of embed to "attachment://image-1.png"
-		post last embed to event-channel with files {_img}
+		reply with last embed with files {_img}
+		
