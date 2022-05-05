@@ -6,10 +6,8 @@ options:
 	pre: "-"
 	
 
-discord command profile [<member=%event-member%>]:
-	aliases: p, exp
-	prefixes: {@pre}
-	trigger:
+on slash command:
+	if event-string is "profile":
 		register text font from "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/fonts/"
 		
 		#! FONT
@@ -21,11 +19,11 @@ discord command profile [<member=%event-member%>]:
 		add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards/cards_default_random/random_3.png" to {_random::*}
 		set {_randomimage} to random element out of {_random::*}
 		set {_background} to image from file {_randomimage}
-		set {_avatar} to resized (rounded image (image from url avatar of arg-1)) to 200, 200 with algo 4
+		set {_avatar} to resized (rounded image (image from url avatar of event-member)) to 200, 200 with algo 4
 		#! LEVEL
-		save LevelExp of arg-1 to {_exp}
-		save Level of arg-1 to {_level}
-		save LevelExpNext of arg-1 to {_next}
+		save LevelExp of event-member to {_exp}
+		save Level of event-member to {_level}
+		save LevelExpNext of event-member to {_next}
 		set {_sx} to ({_exp} / {_next}) * 156
 
 		

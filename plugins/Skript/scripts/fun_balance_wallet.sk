@@ -6,10 +6,8 @@ options:
 	pre: "-"
 	
 
-discord command balance [<member=%event-member%>]:
-	aliases: bal, b
-	prefixes: {@pre}
-	trigger:
+on slash command:
+	if event-string is "balance":
 		register text font from "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/fonts/"
 
 		#! // FONTS
@@ -19,16 +17,16 @@ discord command balance [<member=%event-member%>]:
 		set {font_bank_values} to new font style with name "Eras Demi ITC" and with size 20
 
 		#! // VARIABLES
-		set {_s::*} to "%discord id of arg-1%" split at ""
-		save all coins of arg-1 to {_coins}
-		save balance_card of arg-1 to {_balance_card}
+		set {_s::*} to "%discord id of event-member%" split at ""
+		save all coins of event-member to {_coins}
+		save balance_card of event-member to {_balance_card}
 		set {_card_base} to image from file "%{_balance_card}%"
 		set {_card_chip} to resized image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/utils/chip.png" to 84, 64 with algo 4
 		set {_logo} to resized (rounded image (image from url "https://cdn.discordapp.com/attachments/623552399356723241/955586807179907142/buddy_profile_image.png")) to 50, 50 with algo 4
 
 		#! TEXT
 		set {_card_digit_id} to new text "%{_s::1}%%{_s::2}%%{_s::3}%%{_s::4}% %{_s::5}%%{_s::6}%%{_s::7}%%{_s::8}% %{_s::9}%%{_s::10}%%{_s::11}%%{_s::12}% %{_s::13}%%{_s::14}%%{_s::15}%%{_s::16}%" with color from rgb 210, 210, 210 with font {font_bank_digit} centered horizontally
-		set {_card_bank_user} to new text "%discord name of arg-1%" with color from rgb 255, 255, 255 with font {font_bank_user}
+		set {_card_bank_user} to new text "%discord name of event-member%" with color from rgb 255, 255, 255 with font {font_bank_user}
 		set {_card_valid_text} to new text "Valid" with color from rgb 255, 255, 255 with font {font_bank_values}
 		set {_card_coins_text} to new text "Coins" with color from rgb 255, 255, 255 with font {font_bank_values}
 		set {_card_coins_value} to new text "%{_coins}%" with color from rgb 255, 255, 255 with font {font_bank_digit}
