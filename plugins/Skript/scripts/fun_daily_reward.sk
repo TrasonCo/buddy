@@ -9,9 +9,8 @@ import:
 options:
 	pre: "-"
 	
-discord command daily:
-	prefixes: {@pre}
-	trigger:
+on slash command:
+	if event-string is "daily":
 
 		#! // COOLDOWN CHECK
 		set {_waited} to difference between {system::%discord id of event-member%::dailytimer} and now
