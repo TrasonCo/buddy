@@ -2,13 +2,8 @@
 #!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
 #!──────────────────────────────────────────────────────────────────────────────────────────────────
 
-options:
-	pre: "-"
-	
-
-discord command work:
-	prefixes: {@pre}
-	trigger:
+on slash command:
+	if event-string is "work":
 		#! // TIMER OBSERVER
 		set {_waited} to difference between {system::%discord id of event-member%::workTimer} and now
 

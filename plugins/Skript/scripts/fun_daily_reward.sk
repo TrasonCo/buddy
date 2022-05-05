@@ -6,9 +6,6 @@ import:
 	net.steppschuh.markdowngenerator.table.Table
 	net.steppschuh.markdowngenerator.table.TableRow
 
-options:
-	pre: "-"
-	
 on slash command:
 	if event-string is "daily":
 
