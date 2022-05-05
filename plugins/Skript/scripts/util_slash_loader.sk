@@ -17,8 +17,18 @@ on load:
 	#! //info_help.sk
 	set {_buddy::info_help} to new slash command named "help" with description "Help menu of Buddy"
 	
+	#! //fun_job_work.sk
+	set {_buddy::fun_job_work} to new slash command named "work" with description "Work for your coins"
+
+	#! //fun_balance_wallet.sk
+	set {_buddy::fun_balance_wallet} to new slash command named "balance" with description "Check the balance of your coins"
+
+	#! //fun_profile.sk
+	set {_buddy::fun_profile} to new slash command named "profile" with description "Check your profile and level"
+
 	#! //fun_daily_reward_fishing.sk
 	set {_buddy::fun_daily_reward_fishing} to new slash command named "fishing" with description "Catch a fish and sell it to Buddy"
+	set {_buddy::fun_daily_reward_daily} to new slash command named "daily" with description "Get your daily coins from Buddy"
 	
 	
 	
