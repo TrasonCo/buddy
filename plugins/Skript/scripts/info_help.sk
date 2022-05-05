@@ -16,7 +16,7 @@ on slash command:
 			#! INFO Commands
 
 			add " <:emote_arrow:957018597979488276> **@Buddy**   |   (  *`Shows the Prefix and the reason on why Buddy exists`* )" to {_helpmanu_info::*}
-			add " <:emote_arrow:957018597979488276> **-help**   |   (  *`Shows the help menu`* )" to {_helpmanu_info::*}
+			add " <:emote_arrow:957018597979488276> **/help**   |   (  *`Shows the help menu`* )" to {_helpmanu_info::*}
 			add " " to {_helpmanu_info::*}
 
 			#! TOOL Commands
@@ -26,12 +26,13 @@ on slash command:
 
 			#! FUN Commands
 
-			add " <:emote_arrow:957018597979488276> **-exp**   |   (  *`Shows the Profile with Level progress`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-daily**   |   (  *`Get your Daily Coins from Buddy`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-balance**   |   (  *`Shows your Balance Card`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/profile**   |   (  *`Shows the Profile with Level progress`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/daily**   |   (  *`Get your Daily Coins from Buddy`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/balance**   |   (  *`Shows your Balance Card`* )" to {_helpmanu_fun::*}
 			add " <:emote_arrow:957018597979488276> **-pay `<member>` `<number>`**   |   (  *`Pay your Coins to someone`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-fishing**   |   (  *`Catch a fish and Buddy will buy it from you`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/fishing**   |   (  *`Catch a fish and Buddy will buy it from you`* )" to {_helpmanu_fun::*}
 			add " <:emote_arrow:957018597979488276> **-job list**   |   (  *`Shows you the Job selection`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/work**   |   (  *`Work for some coins`* )" to {_helpmanu_fun::*}
 			add " " to {_helpmanu_fun::*}
 
 			make embed:
@@ -52,7 +53,7 @@ on slash command:
 			#! INFO Commands
 
 			add " <:emote_arrow:957018597979488276> **@Buddy**   |   (  *`Zeigt meine prefix, und warum es mich gibt.`* )" to {_helpmanu_info::*}
-			add " <:emote_arrow:957018597979488276> **-help**   |   (  *`Zeigt das Hilfe Menü.`* )" to {_helpmanu_info::*}
+			add " <:emote_arrow:957018597979488276> **/help**   |   (  *`Zeigt das Hilfe Menü.`* )" to {_helpmanu_info::*}
 			add " " to {_helpmanu_info::*}
 
 			#! TOOL Commands
@@ -62,12 +63,13 @@ on slash command:
 
 			#! FUN Commands
 
-			add " <:emote_arrow:957018597979488276> **-exp**   |   (  *`Zeigt das Profil mit Level an.`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-daily**   |   (  *`Ich gebe dir deine Täglichen Coins.`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-balance**   |   (  *`Zeigt dir deine Kreditkarte mit deinen Coins.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/profile**   |   (  *`Zeigt das Profil mit Level an.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/daily**   |   (  *`Ich gebe dir deine Täglichen Coins.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/balance**   |   (  *`Zeigt dir deine Kreditkarte mit deinen Coins.`* )" to {_helpmanu_fun::*}
 			add " <:emote_arrow:957018597979488276> **-pay `<member>` `<zahl>`**   |   (  *`So überweist du Coins.`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-fishing**   |   (  *`Du fängst einen Fisch, ich kaufe ihn dir ab.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/fishing**   |   (  *`Du fängst einen Fisch, ich kaufe ihn dir ab.`* )" to {_helpmanu_fun::*}
 			add " <:emote_arrow:957018597979488276> **-job list**   |   (  *`Zeigt dir die Job Auswahl.`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/work**   |   (  *`Arbeite um coins zu verdienen.`* )" to {_helpmanu_fun::*}
 			add " " to {_helpmanu_fun::*}
 
 			make embed:
@@ -88,7 +90,7 @@ on slash command:
 			#! INFO Commands
 
 			add " <:emote_arrow:957018597979488276> **@Buddy**   |   (  *`Shows the Prefix and reason why Buddy exist`* )" to {_helpmanu_info::*}
-			add " <:emote_arrow:957018597979488276> **-help**   |   (  *`Shows the help menu`* )" to {_helpmanu_info::*}
+			add " <:emote_arrow:957018597979488276> **/help**   |   (  *`Shows the help menu`* )" to {_helpmanu_info::*}
 			add " " to {_helpmanu_info::*}
 
 			#! TOOL Commands
@@ -98,12 +100,13 @@ on slash command:
 
 			#! FUN Commands
 
-			add " <:emote_arrow:957018597979488276> **-exp**   |   (  *`Shows the Profile with Level progress`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-daily**   |   (  *`Get your Daily Coins from Buddy`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-balance**   |   (  *`Shows your Balance Card`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/profile**   |   (  *`Shows the Profile with Level progress`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/daily**   |   (  *`Get your Daily Coins from Buddy`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/balance**   |   (  *`Shows your Balance Card`* )" to {_helpmanu_fun::*}
 			add " <:emote_arrow:957018597979488276> **-pay `<member>` `<number>`**   |   (  *`Pay your Coins to someone`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-fishing**   |   (  *`Catch a fish and Buddy will buy it from you`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/fishing**   |   (  *`Catch a fish and Buddy will buy it from you`* )" to {_helpmanu_fun::*}
 			add " <:emote_arrow:957018597979488276> **-job list**   |   (  *`Shows you the Job selection`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/work**   |   (  *`Work for some coins`* )" to {_helpmanu_fun::*}
 			add " " to {_helpmanu_fun::*}
 
 			make embed:
@@ -123,7 +126,7 @@ on slash command:
 			#! INFO Commands
 
 			add " <:emote_arrow:957018597979488276> **@Buddy**   |   (  *`Pokazuje Prefix i powód dlaczego Buddy powstał`* )" to {_helpmanu_info::*}
-			add " <:emote_arrow:957018597979488276> **-help**   |   (  *`Pokazuje menu pomocy`* )" to {_helpmanu_info::*}
+			add " <:emote_arrow:957018597979488276> **/help**   |   (  *`Pokazuje menu pomocy`* )" to {_helpmanu_info::*}
 			add " " to {_helpmanu_info::*}
 
 			#! TOOL Commands
@@ -133,8 +136,9 @@ on slash command:
 
 			#! FUN Commands
 
-			add " <:emote_arrow:957018597979488276> **-exp**   |   (  *`Pokazuje profil wraz z poziomem`* )" to {_helpmanu_fun::*}
-			add " <:emote_arrow:957018597979488276> **-daily**   |   (  *`Odbierz dzienne Coinsy od Buddy'ego`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/profile**   |   (  *`Pokazuje profil wraz z poziomem`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/daily**   |   (  *`Odbierz dzienne Coinsy od Buddy'ego`* )" to {_helpmanu_fun::*}
+			add " <:emote_arrow:957018597979488276> **/work**   |   (  *`Work for some coins`* )" to {_helpmanu_fun::*}
 			add " " to {_helpmanu_fun::*}
 
 			make embed:
