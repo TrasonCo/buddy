@@ -31,7 +31,7 @@ on slash command:
 			stop
 		else:
 			set {system::%discord id of event-member%::dailytimer} to now
-			set {_random} to random integer between 50 and 200
+			set {_random} to random integer between 10 and 100
 			add {_random} to coins of event-member
 
 			#! // DESCRIPTION DAILY COMMAND
@@ -86,22 +86,22 @@ on slash command:
 			if {_catch} is "small":
 				set {_catch_name_emote} to "🐟 small"
 				set {catch_image} to "https://emojigraph.org/media/apple/fish_1f41f.png"
-				set {_reward} to 10
+				set {_reward} to 2
 
 			if {_catch} is "medium":
 				set {_catch_name_emote} to "🐟 medium"
 				set {catch_image} to "https://emojigraph.org/media/facebook/fish_1f41f.png"
-				set {_reward} to 20
+				set {_reward} to 5
 
 			if {_catch} is "big":
 				set {_catch_name_emote} to "🐡 big"
 				set {catch_image} to "https://emojigraph.org/media/facebook/blowfish_1f421.png"
-				set {_reward} to 50
+				set {_reward} to 10
 
 			if {_catch} is "giant":
 				set {_catch_name_emote} to "🐠 giant"
 				set {catch_image} to "https://emojigraph.org/media/facebook/tropical-fish_1f420.png"
-				set {_reward} to 150
+				set {_reward} to 25
 			
 			give {_reward} to coins of event-member
 			
@@ -125,10 +125,10 @@ on slash command:
 			set {_table} to new Table.Builder()
 			{_table}.withAlignments(2,2,2)
 			{_table}.addRow("Fish 🎣", "Coins 💰")
-			{_table}.addRow( "SMALL🐟", "10 💰")
-			{_table}.addRow( "MEDIUM🐟", "20 💰")
-			{_table}.addRow( "BIG🐡", "50 💰")
-			{_table}.addRow( "GIANT🐠", "150 💰")
+			{_table}.addRow( "SMALL🐟", "2 💰")
+			{_table}.addRow( "MEDIUM🐟", "5 💰")
+			{_table}.addRow( "BIG🐡", "10 💰")
+			{_table}.addRow( "GIANT🐠", "25 💰")
 
 			make embed:
 				set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::titel_fish_catch}%"

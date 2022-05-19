@@ -64,78 +64,78 @@ on slash command:
 				#! // WORK JOBS POLICE
 				if {_job_selected} is "Police":
 					if {_police_hours} >= 0:
-						set {_reward} to 10
+						set {_reward} to 2
 					if {_police_hours} >= 50:
-						set {_reward} to 25
+						set {_reward} to 5
 					if {_police_hours} >= 100:
-						set {_reward} to 50
+						set {_reward} to 10
 					if {_police_hours} >= 100:
-						set {_reward} to 100
+						set {_reward} to 45
 					give 1 to job_hours_police of event-member
 					
 				
 				#! // WORK JOBS STREAMER
 				if {_job_selected} is "Streamer":
 					if {_streamer_hours} >= 0:
-						set {_reward} to 10
+						set {_reward} to 2
 					if {_streamer_hours} >= 50:
-						set {_reward} to 25
+						set {_reward} to 5
 					if {_streamer_hours} >= 100:
-						set {_reward} to 50
+						set {_reward} to 10
 					if {_streamer_hours} >= 100:
-						set {_reward} to 100
+						set {_reward} to 45
 					give 1 to job_hours_police of event-member
 
 				
 				#! // WORK JOBS COOK
 				if {_job_selected} is "Cook":
 					if {_cook_hours} >= 0:
-						set {_reward} to 10
+						set {_reward} to 2
 					if {_cook_hours} >= 50:
-						set {_reward} to 25
+						set {_reward} to 5
 					if {_cook_hours} >= 100:
-						set {_reward} to 50
+						set {_reward} to 10
 					if {_cook_hours} >= 100:
-						set {_reward} to 100
+						set {_reward} to 45
 					give 1 to job_hours_cook of event-member
 					
 				
 				#! // WORK JOBS DEVELOPER
 				if {_job_selected} is "Developer":
 					if {_developer_hours} >= 0:
-						set {_reward} to 10
+						set {_reward} to 2
 					if {_developer_hours} >= 25:
-						set {_reward} to 25
+						set {_reward} to 5
 					if {_developer_hours} >= 50:
-						set {_reward} to 50
+						set {_reward} to 10
 					if {_developer_hours} >= 100:
-						set {_reward} to 100
+						set {_reward} to 45
 					give 1 to job_hours_developer of event-member
 
 				
 				#! // WORK JOBS DOCTOR
 				if {_job_selected} is "Doctor":
 					if {_doctor_hours} >= 0:
-						set {_reward} to 10
+						set {_reward} to 2
 					if {_doctor_hours} >= 50:
-						set {_reward} to 25
+						set {_reward} to 5
 					if {_doctor_hours} >= 100:
-						set {_reward} to 50
+						set {_reward} to 10
 					if {_doctor_hours} >= 100:
-						set {_reward} to 100
+						set {_reward} to 45
 					give 1 to job_hours_doctor of event-member
 					
 				
 				#! // WORK JOBS PHOTOGRAPH
 				if {_job_selected} is "Photograph":
 					if {_photograph_hours} >= 0:
-						set {_reward} to 10
+						set {_reward} to 2
 					if {_photograph_hours} >= 50:
-						set {_reward} to 25
+						set {_reward} to 5
 					if {_photograph_hours} >= 100:
-						set {_reward} to 50
+						set {_reward} to 10
 					if {_photograph_hours} >= 100:
-						set {_reward} to 100
+						set {_reward} to 45
 					give 1 to job_hours_photograph of event-member
 					
 					
