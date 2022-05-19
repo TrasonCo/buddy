@@ -30,6 +30,8 @@ on load:
 	set {_buddy::fun_daily_reward_fishing} to new slash command named "fishing" with description "Catch a fish and sell it to Buddy"
 	set {_buddy::fun_daily_reward_daily} to new slash command named "daily" with description "Get your daily coins from Buddy"
 	
+	#! //fun_top_lists.sk
+	set {_buddy::fun_top_lists} to new slash command named "top" with description "Shows top lists of coins, messages, level."
 	
 	
 	
