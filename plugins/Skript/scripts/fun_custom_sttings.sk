@@ -1,0 +1,89 @@
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+#!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
+#!──────────────────────────────────────────────────────────────────────────────────────────────────
+
+options:
+	pre: "-"
+	
+
+discord command test:
+	prefixes: {@pre}
+	trigger:
+
+		set {_customs} to new components row
+		add new success button with url "balance_anime" named "Anime" with reaction "art" to components of {_customs}
+		#add new success button with url "balance_game" named "Game" with reaction "art" to components of {_customs}
+		
+		make embed:
+			set image of embed to "https://cdn.discordapp.com/attachments/623552399356723241/975393444950343680/category_image.png"
+			footertext
+		reply with last embed with components {_customs} and store it in {custom::balance_card::%discord id of event-member%}
+		set {member_id_custom_balance_card} to discord id of event-member
+
+
+on button click:
+	if event-string is "balance_anime":
+		defer interaction
+		if discord id of event-member is {member_id_custom_balance_card}:
+
+			set {_files::*} to all dirs of dir path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/cards_anime/"
+			loop {_files::*}:
+				add "%loop-value%" to {_banners::*}
+			replace all "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/cards_anime/" with "" in {_banners::*}
+			#! // Dropdown beginn
+			set {_dropdown} to new components row
+			set {_dp} to new dropdown with id "custom_card_anime"
+			set max range of {_dp} to 1
+			set min range of {_dp} to 1
+			set placeholder of {_dp} to "Select a anime category"
+			loop {_banners::*}:
+				add new option with value "%loop-value%" named "%loop-value%" with description "Click me to choose" with reaction "file_folder" to options of {_dp}
+			#! // Dropdown end
+			add {_dp} to components of {_dropdown}
+
+			make embed:
+				set image of embed to "https://cdn.discordapp.com/attachments/623552399356723241/975391864805019668/Unbenannt-1.png"
+				footertext
+			edit message {custom::balance_card::%discord id of event-member%} to show last embed with components row {_dropdown}
+	if event-string is "balance_game":
+		if discord id of event-member is {member_id_custom_balance_card}:
+			reply with "test"
+
+
+
+
+on dropdown click:
+	event-string is "custom_card_anime":
+		defer interaction
+		set {_files::*} to all files of dir path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/cards_anime/%selected value%/"
+		loop {_files::*}:
+			add "%loop-value%" to {_banners::*}
+		replace all "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/cards_anime/%selected value%/" with "" in {_banners::*}
+		set {banner_anime::discord id of event-member} to "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/cards_anime/%selected value%/"
+		#! // Dropdown beginn
+		set {_dropdown} to new components row
+		set {_dp} to new dropdown with id "custom_card_anime_choice"
+		set max range of {_dp} to 1
+		set min range of {_dp} to 1
+		set placeholder of {_dp} to "Select a card design"
+		loop {_banners::*}:
+			add new option with value "%loop-value%" named "%loop-value%" with description "Click me to choose" with reaction "art" to options of {_dp}
+		add {_dp} to components of {_dropdown}
+		#! // Dropdown end
+		if selected value is "7ds":
+			make embed:
+				set image of embed to "https://cdn.discordapp.com/attachments/623552399356723241/975391414370324490/Unbenannt-1.png"
+				footertext
+			edit message {custom::balance_card::%discord id of event-member%} to show last embed with components row {_dropdown}
+
+		#reply with "%selected value%"    
+		# set balance_card of loop-value to "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/default.png"
+
+
+on dropdown click:
+	event-string is "custom_card_anime_choice":
+		#defer interaction
+		set balance_card of event-member to "%{banner_anime::discord id of event-member}%%selected value%"
+		make embed:
+			set description of embed to ":art:  **|**   %mention tag of event-member% has changed his profile banner to `%selected value%`"
+		reply with last embed
