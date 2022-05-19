@@ -9,13 +9,12 @@ import:
 options:
 	pre: "-"
 	
-discord command top:
-	prefixes: {@pre}
-	trigger:
+on slash command:
+	if event-string is "top":
 		set {_top10_buttons} to new components row
 		add new success button with url "top_10-coins" named "Coins" with reaction "cash" from guild with id "889210531217543198" to components of {_top10_buttons}
 		add new success button with url "top_10-msg" named "Messages" with reaction "property" from guild with id "889210531217543198" to components of {_top10_buttons}
-		add new success button with url "top_10-level" named "Level" with reaction "cash" from guild with id "889210531217543198" to components of {_top10_buttons}
+		add new success button with url "top_10-level" named "Level" with reaction "levelup" from guild with id "889210531217543198" to components of {_top10_buttons}
 		
 		#! language variable stuff
 		if {langcode::%event-guild%} is not set:
