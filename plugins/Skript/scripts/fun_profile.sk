@@ -22,8 +22,19 @@ on slash command:
 		save LevelExp of event-member to {_exp}
 		save Level of event-member to {_level}
 		save LevelExpNext of event-member to {_next}
-		set {_sx} to ({_exp} / {_next}) * 156
+		set {_sx} to ({_exp} / {_next}) * 716
 
+		#! RANK
+		save rank of event-member to {_rank}
+
+		if {_rank} is "Admin":
+			set {_rank} to resized (image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/ranks/admin.png") to 200, 40 with algo 4
+		if {_rank} is "Moderator":
+			set {_rank} to resized (image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/ranks/moderator.png") to 200, 40 with algo 4
+		if {_rank} is "Premium":
+			set {_rank} to resized (image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/ranks/premium.png") to 200, 40 with algo 4
+		if {_rank} is "Basic":
+			set {_rank} to resized (image from file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/ranks/basic.png") to 200, 40 with algo 4
 		
 
 		#! IMAGE
@@ -32,22 +43,26 @@ on slash command:
 		#! DRAW IMAGE
 		draw image {_background} on {_img} at 0, 0
 		draw {_avatar} on {_img} at 39, 112
+		draw {_rank} on {_img} at 39, 320
 
 		#! TEXT
 		set {_level_text} to new text "Lvl. %{_level}%" with color from rgb 30, 30, 30 with font {montserrat}
 		set {_exp_text} to new text "Exp. %{_exp}% / %{_next}%" with color from rgb 30, 30, 30 with font {montserrat}
 
 		#! DRAW OBJECTS
-		draw rounded rect with anti aliases at 59, 320 with size 160, 20 with color from rgb 0, 0, 0 with arc size 10, 10 on {_img}
-		draw rounded rect with anti aliases at 61, 322 with size 156, 16 with color from rgb 194, 194, 194 with arc size 10, 10 on {_img}
-		draw rounded rect with anti aliases at 61, 322 with size {_sx}, 16 with color from rgb 0, 194, 0 with arc size 10, 10 on {_img}
+		draw rounded rect with anti aliases at 40, 400 with size 720, 40 with color from rgb 0, 0, 0 with arc size 10, 10 on {_img} 
+		draw rounded rect with anti aliases at 42, 402 with size 716, 36 with color from rgb 36, 35, 35 with arc size 10, 10 on {_img} 
+		draw rounded rect with anti aliases at 42, 402 with size {_sx}, 36 with color from rgb 91, 113, 163 with arc size 10, 10 on {_img} 
 		
 		#! DRAW TEXT
-		draw {_level_text} with anti aliases at 49, 360 on {_img}
-		draw {_exp_text} with anti aliases at 120, 360 on {_img}
-		wait 4 ticks
+		draw {_level_text} with anti aliases at 49, 390 on {_img}
+		draw {_exp_text} with anti aliases at 120, 390 on {_img}
+		wait 6 ticks
 		make embed:
 			set embed color of embed to orange
 			set image of embed to "attachment://image-1.png"
 		reply with last embed with files {_img}
 		
+
+
+
