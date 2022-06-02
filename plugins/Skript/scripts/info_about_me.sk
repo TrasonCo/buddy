@@ -26,7 +26,7 @@ on message received:
 
 				#! // Embed Description
 				set {_bot_output::%event-guild%::default::desc} to "I am Buddy, a Discord Bot 🤖 made by Trason. I was made because everyone needs a friend so here I am, your new best friend, Buddy 🤗."
-				set {_bot_output::%event-guild%::DE_de::desc} to "Ich bin Buddy ein Discord Bot🤖 gemacht von Trason, gemacht wurde ich da jeder einen Freund braucht und hier bin ich, euer neuer bester Freund(Buddy)🤗."
+				set {_bot_output::%event-guild%::DE_de::desc} to "Ich bin Buddy ein Discord Bot🤖 gemacht von Trason, entwickelt wurde ich da jeder einen Freund braucht und hier bin ich, euer neuer bester Freund(Buddy)🤗."
 				set {_bot_output::%event-guild%::EN_en::desc} to "I am Buddy, a Discord Bot 🤖 made by Trason. I was made because everyone needs a friend so here I am, your new best friend, Buddy 🤗."
 				 
 				#! // Embed Field Prefix

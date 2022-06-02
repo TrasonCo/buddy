@@ -10,6 +10,13 @@ discord command test:
 	prefixes: {@pre}
 	trigger:
 
+
+
+
+
+
+
+
 		set {_customs} to new components row
 		add new success button with url "balance_anime" named "Anime" with reaction "art" to components of {_customs}
 		#add new success button with url "balance_game" named "Game" with reaction "art" to components of {_customs}
@@ -19,6 +26,19 @@ discord command test:
 			footertext
 		reply with last embed with components {_customs} and store it in {custom::balance_card::%discord id of event-member%}
 		set {member_id_custom_balance_card} to discord id of event-member
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 on button click:
@@ -52,6 +72,17 @@ on button click:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 on dropdown click:
 	event-string is "custom_card_anime":
 		defer interaction
@@ -76,13 +107,22 @@ on dropdown click:
 				footertext
 			edit message {custom::balance_card::%discord id of event-member%} to show last embed with components row {_dropdown}
 
-		#reply with "%selected value%"    
-		# set balance_card of loop-value to "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/balance_card/default.png"
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 on dropdown click:
 	event-string is "custom_card_anime_choice":
-		#defer interaction
 		set balance_card of event-member to "%{banner_anime::discord id of event-member}%%selected value%"
 		make embed:
 			set description of embed to ":art:  **|**   %mention tag of event-member% has changed his profile banner to `%selected value%`"

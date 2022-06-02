@@ -32,7 +32,7 @@ on slash command:
 		set {_bot_output::%event-guild%::EN_en::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Select a button below to select the category."
 		set {_bot_output::%event-guild%::PL_pl::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Kliknij w przycisk poniżej, aby wybrać kategorię."
 		
-		{_bot_output::%event-guild%::%{langcode::%event-guild%}%::}
+
 		
 		
 		make embed:

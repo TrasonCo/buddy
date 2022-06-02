@@ -75,7 +75,7 @@ discord command job [<text>] [<text>]:
 		set {_bot_output::%event-guild%::EN_en::job_list_embed_hours} to "Hours"
 		
 		#! // JOB LIST
-		#TODO // REPLACE TEXT WITH LANGUAGE VARS
+
 		if arg-1 is "list":
 
 			
