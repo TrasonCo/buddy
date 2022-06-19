@@ -31,8 +31,7 @@ discord command snippets:
 		set {_bot_output::%event-guild%::DE_de::drop_placeholder} to "Wähle dein Snippet..."
 		set {_bot_output::%event-guild%::EN_en::drop_placeholder} to "Choose your Snippet..."
 		set {_bot_output::%event-guild%::PL_pl::drop_placeholder} to "Wybierz przykładowy kod..."
-		
-		
+				
 		#! // Embed Title
 		set {_bot_output::%event-guild%::default::Embed_title} to "This is the Snippet Selection."
 		set {_bot_output::%event-guild%::DE_de::Embed_title} to "Das ist die Snippet auswahl."
