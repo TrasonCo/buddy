@@ -10,26 +10,17 @@ discord command test:
 	prefixes: {@pre}
 	trigger:
 
-
-
-
-
-
-
-
+		#! CUSTOMS MENU
 		set {_customs} to new components row
-		add new success button with url "balance_anime" named "Anime" with reaction "art" to components of {_customs}
-		#add new success button with url "balance_game" named "Game" with reaction "art" to components of {_customs}
+		add new success button with url "balance_card" named "Credit Card" with reaction ":coin:" to components of {_customs}
+		add new success button with url "profile_card_banner" named "Profile Banner" with reaction ":busts_in_silhouette:" to components of {_customs}
+		add new success button with url "profile_card_status" named "Profile Status" with reaction ":speech_left:" to components of {_customs}
 		
 		make embed:
 			set image of embed to "https://cdn.discordapp.com/attachments/623552399356723241/975393444950343680/category_image.png"
 			footertext
 		reply with last embed with components {_customs} and store it in {custom::balance_card::%discord id of event-member%}
 		set {member_id_custom_balance_card} to discord id of event-member
-
-
-
-
 
 
 

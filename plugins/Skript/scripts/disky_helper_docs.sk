@@ -2,19 +2,51 @@
 #!		THIS FILE WAS CREATED BY SK_AUTORELOAD (SKAR) THE HELPER FOR A BETTER WORKFLOW
 #!──────────────────────────────────────────────────────────────────────────────────────────────────
 
-
+options:
+	pre: "."
+	
 
 on slash command: 
 	if event-string is "disky":
 		set {_disky} to new components row
-		add new link button with url "https://disky.tech/v4/docs/" named "Documentations" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
-		add new link button with url "https://forum.itsthesky.info/resources/" named "Forum" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
+		add new link button with url "https://docs.disky.me/" named "Documentations" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
+		add new link button with url "https://github.com/DiSkyOrg/DiSky" named "Github" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
 		add new link button with url "https://github.com/DiSkyOrg/DiSky/releases/latest" named "Download" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
 		
 		set {_disky_emote} to mention tag of reaction "disky" from guild with id "818182471140114432"
 		make embed:
-			set title of embed to "%{_disky_emote}%  |  DiSKy 4.0-beta4"
+			set title of embed to "%{_disky_emote}%  |  DiSKy 4.9.0"
 			set description of embed to " "
 			footertext
 		reply with last embed with components {_disky}
 
+
+discord command help:
+	prefixes: {@pre}
+	trigger:
+
+		add "Be nice and friendly and offer us information to help you.%nl%" to {_help_command_desc::*}
+		add "**1.)** DiSky and Skript version." to {_help_command_desc::*}
+		add "**2.)** A detailed description of what is not working." to {_help_command_desc::*}
+		add "**3.)** The code section that may be causing the problem. (code or image)" to {_help_command_desc::*}
+		add "**4.)** The error that may occur. (code or image)" to {_help_command_desc::*}
+
+
+		add "Please paste code only formatted in chat." to {_help_command_code::*}
+		add "%nl%**Example:**" to {_help_command_code::*}
+		add "\`\`\`applescript" to {_help_command_code::*}
+		add "on slash command:%nl%    if event-string is ""disky"":%nl%        set {_disky} to new components row" to {_help_command_code::*}
+		add "\`\`\`" to {_help_command_code::*}
+
+
+		add "```applescript%nl%on slash command:%nl%    if event-string is ""disky"":%nl%        set {_disky} to new components row```" to {_help_command_code::*}
+
+
+		make embed:
+			set title of embed to "How to ask for help."
+			set description of embed to "%join {_help_command_desc::*} by nl%"
+			#add field named "" with value "" to fields of embed
+			add inline field named "Code:" with value "%join {_help_command_code::*} by nl%" to fields of embed
+			footertext
+		reply with last embed
+		
