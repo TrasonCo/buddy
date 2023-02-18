@@ -46,24 +46,29 @@ discord command snippets:
 		
 		
 
-		set {_dropdown} to new components row
-		#! // Dropdown beginn
 
-		set {_dp} to new dropdown with id "dropdown"
-		set max range of {_dp} to 1
-		set min range of {_dp} to 1
-		set placeholder of {_dp} to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::drop_placeholder}%"
-		loop {_snippets::*}:
-			add new option with value "%loop-value%" named "Snippet: %loop-value%" with description "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::dp-desc}%" with reaction "book" to options of {_dp}
-		
-		#! // Dropdown end
-		add {_dp} to components of {_dropdown}
+		create a new message and store it in {_msg}:
+			set the content of the message to "Hello World!"
+			
+			make embed:
+				set title of embed to {_bot_output::%event-guild%::%{langcode::%event-guild%}%::Embed_title}
+				set description of embed to {_bot_output::%event-guild%::%{langcode::%event-guild%}%::Embed_desc}
+				footertext
+			add last embed to the embeds of the message
+								
+			#! // Dropdown beginn
+			set {_dp} to new dropdown with id "dropdown"
+			set max range of {_dp} to 1
+			set min range of {_dp} to 1
+			set placeholder of {_dp} to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::drop_placeholder}%"
+			loop {_snippets::*}:
+				add new option with value "%loop-value%" named "Snippet: %loop-value%" with description "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::dp-desc}%" with reaction "book" to options of {_dp}
+			add {_dp} to the rows of message
 
-		make embed:
-			set title of embed to {_bot_output::%event-guild%::%{langcode::%event-guild%}%::Embed_title}
-			set description of embed to {_bot_output::%event-guild%::%{langcode::%event-guild%}%::Embed_desc}
-			footertext
-		post last embed to event-channel with components row {_dropdown}
+		reply with {_msg}
+
+
+
 		
 
 
@@ -76,6 +81,15 @@ on dropdown click:
 				set description of embed to "```applescript%nl%%join {_content::*} by nl%```"
 				footertext
 			reply with last embed
-		else:
-			post "<:emote_:957001720217604178>**Here is your requested file:** %mention tag of event-member%, i hope it will help you." to event-channel with files "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/files_snippets/%selected value%.txt"
-			defer interaction
+		else:	
+			create a new message and store it in {_msg}:
+				set the content of the message to "<:emote_:957001720217604178>**Here is your requested file:** %mention tag of event-member%, i hope it will help you."
+				
+				
+				
+				add "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/files_snippets/%selected value%.txt" to the attachments of the message
+
+			reply with {_msg}
+
+
+

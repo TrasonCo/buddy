@@ -11,11 +11,8 @@ options:
 	
 on slash command:
 	if event-string is "top":
-		set {_top10_buttons} to new components row
-		add new success button with url "top_10-coins" named "Coins" with reaction "cash" from guild with id "889210531217543198" to components of {_top10_buttons}
-		add new success button with url "top_10-msg" named "Messages" with reaction "property" from guild with id "889210531217543198" to components of {_top10_buttons}
-		add new success button with url "top_10-level" named "Level" with reaction "levelup" from guild with id "889210531217543198" to components of {_top10_buttons}
-		
+
+			
 		#! language variable stuff
 		if {langcode::%event-guild%} is not set:
 			set {langcode::%event-guild%} to "default"
@@ -32,14 +29,24 @@ on slash command:
 		set {_bot_output::%event-guild%::EN_en::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Select a button below to select the category."
 		set {_bot_output::%event-guild%::PL_pl::Top_10_Selection_menu_desc} to "%nl%<:icons8document100:889210789645402192> | Kliknij w przycisk poniżej, aby wybrać kategorię."
 		
+		
+		create a new message and store it in {_top10_buttons}:
+			
+			make new component row and store it in {_row}:
+				add new success button with url "top_10-coins" named "Coins" with reaction "cash" from guild with id "889210531217543198" to components of the row builder
+				add new success button with url "top_10-msg" named "Messages" with reaction "property" from guild with id "889210531217543198" to components of the row builder
+				add new success button with url "top_10-level" named "Level" with reaction "levelup" from guild with id "889210531217543198" to components of the row builder
+			add {_row} to rows of the message
+			
 
 		
-		
-		make embed:
-			set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::Top_10_selection_menu_title}%"
-			set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::Top_10_Selection_menu_desc}%"
-			footertext
-		reply with last embed with components {_top10_buttons} and store it in {toplist::%discord id of event-member%}
+			make embed:
+				set title of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::Top_10_selection_menu_title}%"
+				set description of embed to "%{_bot_output::%event-guild%::%{langcode::%event-guild%}%::Top_10_Selection_menu_desc}%"
+				footertext
+			add last embed to the embeds of the message
+
+		reply with {_top10_buttons} and store it in {toplist::%discord id of event-member%}
 
 
 on button click:
@@ -51,11 +58,27 @@ on button click:
 		loop 10 times:
 			add 1 to {_n}
 			{_table}.addRow("%{_n}%", "Coins:  %{_coinstop::coins::%loop-value%}%", "%{_coinstop::member_name::%loop-value%}%")
-		make embed:
-			set title of embed to "Top 10 list for coins: <:cash:889210789272096788>"
-			set description of embed to "```%{_table}.build()%```"
-			footertext
-		edit {toplist::%discord id of event-member%} to show last embed and keep components
+
+
+		create a new message and store it in {_top10_buttons}:
+			
+			make new component row and store it in {_row}:
+				add new success button with url "top_10-coins" named "Coins" with reaction "cash" from guild with id "889210531217543198" to components of the row builder
+				add new success button with url "top_10-msg" named "Messages" with reaction "property" from guild with id "889210531217543198" to components of the row builder
+				add new success button with url "top_10-level" named "Level" with reaction "levelup" from guild with id "889210531217543198" to components of the row builder
+			add {_row} to rows of the message
+			
+
+		
+			make embed:
+				set title of embed to "Top 10 list for coins: <:cash:889210789272096788>"
+				set description of embed to "```%{_table}.build()%```"
+				footertext
+			add last embed to the embeds of the message
+
+		
+
+		edit {toplist::%discord id of event-member%} to show {_top10_buttons}
 		defer interaction
 	
 	if event-string is "top_10-msg":
@@ -66,12 +89,32 @@ on button click:
 		loop 10 times:
 			add 1 to {_n}
 			{_table}.addRow("%{_n}%", "Msg: %{_messagestop::messages::%loop-value%}%", "%{_messagestop::member_name::%loop-value%}%")
-		make embed:
-			set title of embed to "Top 10 list for messages: <:property:889210789393760306>"
-			set description of embed to "```%{_table}.build()%```"
-			footertext
-		edit {toplist::%discord id of event-member%} to show last embed and keep components
+
+
+
+
+		create a new message and store it in {_top10_buttons}:
+			
+			make new component row and store it in {_row}:
+				add new success button with url "top_10-coins" named "Coins" with reaction "cash" from guild with id "889210531217543198" to components of the row builder
+				add new success button with url "top_10-msg" named "Messages" with reaction "property" from guild with id "889210531217543198" to components of the row builder
+				add new success button with url "top_10-level" named "Level" with reaction "levelup" from guild with id "889210531217543198" to components of the row builder
+			add {_row} to rows of the message
+			
+
+		
+			make embed:
+				set title of embed to "Top 10 list for messages: <:property:889210789393760306>"
+				set description of embed to "```%{_table}.build()%```"
+				footertext
+			add last embed to the embeds of the message
+
+		
+
+		edit {toplist::%discord id of event-member%} to show {_top10_buttons}
 		defer interaction
+
+
 	
 	if event-string is "top_10-level":
 		execute "SELECT * FROM level ORDER BY level DESC limit 10" in {sql} and store in {_leveltop::*}
@@ -81,10 +124,34 @@ on button click:
 		loop 10 times:
 			add 1 to {_n}
 			{_table}.addRow("%{_n}%", "Lvl: %{_leveltop::level::%loop-value%}%", "Exp: %{_leveltop::levelexp::%loop-value%}%/%{_leveltop::levelexpnext::%loop-value%}%", "%{_leveltop::member_name::%loop-value%}%")
-		make embed:
-			set title of embed to "Top 10 list for level: <:levelup:889210789603450982>"
-			set description of embed to "```%{_table}.build()%```"
-			footertext
-		edit {toplist::%discord id of event-member%} to show last embed and keep components
-		defer interaction
+		
+		
+		
+		
+		create a new message and store it in {_top10_buttons}:
+			
+			make new component row and store it in {_row}:
+				add new success button with url "top_10-coins" named "Coins" with reaction "cash" from guild with id "889210531217543198" to components of the row builder
+				add new success button with url "top_10-msg" named "Messages" with reaction "property" from guild with id "889210531217543198" to components of the row builder
+				add new success button with url "top_10-level" named "Level" with reaction "levelup" from guild with id "889210531217543198" to components of the row builder
+			add {_row} to rows of the message
+			
 
+		
+			make embed:
+				set title of embed to "Top 10 list for level: <:levelup:889210789603450982>"
+				set description of embed to "```%{_table}.build()%```"
+				footertext
+			add last embed to the embeds of the message
+
+		
+
+		edit {toplist::%discord id of event-member%} to show {_top10_buttons}
+		defer interaction
+		
+		
+		
+		
+		
+		
+	

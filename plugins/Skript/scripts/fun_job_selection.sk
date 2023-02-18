@@ -162,7 +162,7 @@ discord command job [<text>] [<text>]:
 			set {_bot_output::%event-guild%::EN_en::job_selection_set_embed_desc} to "```✅  |  You joined the job %proper case arg-2%!```"
 			
 			
-			{_bot_output::%event-guild%::%{langcode::%event-guild%}%::}
+		
 			
 			
 

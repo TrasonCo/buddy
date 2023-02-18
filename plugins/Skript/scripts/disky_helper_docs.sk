@@ -8,17 +8,27 @@ options:
 
 on slash command: 
 	if event-string is "disky":
-		set {_disky} to new components row
-		add new link button with url "https://docs.disky.me/" named "Documentations" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
-		add new link button with url "https://forum.itsthesky.info/resources/" named "Forum" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
-		add new link button with url "https://github.com/DiSkyOrg/DiSky/releases/latest" named "Download" with reaction "disky" from guild with id "818182471140114432" to components of {_disky}
+
+		create a new message and store it in {_disky}:
+			set {_disky_emote} to "<:disky:825811394963177533>"
+			make embed:
+				set title of embed to " "
+				set description of embed to " "
+				add field named "%{_disky_emote}% Documentations" with value "```Here you can go directly to the documentation website where you can find all events, effects, conditions and expressions of disky.```" to fields of embed
+				add field named "%{_disky_emote}% Wiki" with value "```Here you can go directly to the wiki website for step-by-step instructions like Slash Commands and Message Builder and some more.```" to fields of embed
+				add field named "%{_disky_emote}% Download" with value "```Here you can go directly to the download website for the latest version of DiSky.```" to fields of embed
+				footertext
+			add last embed to the embeds of the message
+			
+			make new component row and store it in {_row}:
+				add new link button with url "https://disky.me/docs" named "Documentations" with reaction "disky" from guild with id "818182471140114432" to components of the row builder
+				add new link button with url "https://docs.disky.me/" named "Wiki" with reaction "disky" from guild with id "818182471140114432" to components of the row builder
+				add new link button with url "https://modrinth.com/plugin/disky/version/latest" named "Download" with reaction "disky" from guild with id "818182471140114432" to components of the row builder
+			add {_row} to rows of the message
+		reply with {_disky}
+
+
 		
-		set {_disky_emote} to mention tag of reaction "disky" from guild with id "818182471140114432"
-		make embed:
-			set title of embed to "%{_disky_emote}%  |  DiSKy 4.1.1"
-			set description of embed to " "
-			footertext
-		reply with last embed with components {_disky}
 
 
 discord command help:

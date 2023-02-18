@@ -34,12 +34,20 @@ on member join:
 		draw {_welcome_text} with anti aliases at 0, 360 on {_img}
 		draw {_number_greet_text} with anti aliases at 0, 420 on {_img}
 
-		make embed:
-			set embed color of embed to orange
-			set image of embed to "attachment://welcome.png"
+
 		save image {_img} to file "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/welcome.png"
-		post last embed in channel with id "958791183411314688" with files "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/welcome.png"
+		create a new message and store it in {_msg}:
+			
+			make embed:
+				set embed color of embed to orange
+				set image of embed to "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/welcome.png"
+			add last embed to the embeds of the message
+			
+			add {_img} to the attachments of the message
+
+		post {_msg} in channel with id "958791183411314688"
 		wait a second
 		delete file path "/home/pi/minecraft/buddy_bot/plugins/Skript/scripts/images_buddy/cards_temp/welcome.png"
 	else:
 		stop
+		

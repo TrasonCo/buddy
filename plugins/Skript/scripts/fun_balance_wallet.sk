@@ -46,8 +46,16 @@ on slash command:
 		draw {_card_coins_value} with anti aliases at 111, 285 on {_img}
 		
 		wait 4 ticks
-		#! // EMBED		
-		make embed:
-			set embed color of embed to orange
-			set image of embed to "attachment://image-1.png"
-		reply with last embed with files {_img}
+		#! // EMBED
+
+		create a new message and store it in {_msg}:
+			
+			#make embed:
+			#	set embed color of embed to orange
+			#	set image of embed to "attachments://image-1.png"
+			#add last embed to the embeds of the message
+			
+			add {_img} to the attachments of the message
+
+		reply with {_msg}
+
