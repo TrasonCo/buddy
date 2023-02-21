@@ -48,7 +48,6 @@ discord command snippets:
 
 
 		create a new message and store it in {_msg}:
-			set the content of the message to "Hello World!"
 			
 			make embed:
 				set title of embed to {_bot_output::%event-guild%::%{langcode::%event-guild%}%::Embed_title}
