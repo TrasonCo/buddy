@@ -1,0 +1,38 @@
+#Creating a new role
+
+set {_action} to new role action in event-guild
+set role name of {_action} to "Member"
+
+create {_action} and store it in {_role}
+#! Editing its permissions and giving it to someone
+add (message view) to permissions of {_role}
+add {_role} to roles of event-member
+
+
+#Creating a new category
+
+set {_action} to new category action in event-guild
+set channel name of {_action} to "Dog"
+
+create {_action} and store it in {_category}
+
+
+#Creating a new text channel
+
+set {_action} to new text channel action in event-guild
+set channel parent of {_action} to {_category}
+set channel name of {_action} to "Text"
+
+create {_action} and store it in {_text}
+
+#Creating a new voice channel
+
+set {_action} to new voice channel action in event-guild
+set channel parent of {_action} to {_category}
+set channel name of {_action} to "Voice"
+set max users of {_action} to 5
+
+create {_action} and store it in {_voice}
+#! Editing permissions for a channel
+add (voice connect) to permissions of {_role} in {_voice}
+remove (voice speak) from permissions of {_role} in {_voice}
